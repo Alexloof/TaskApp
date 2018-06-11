@@ -1,5 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
+
+import { Container } from './style'
+
+import SideMenu from '../../components/SideMenu'
 import CardList from './components/CardList'
 
 const getItems = (count, offset = 0) =>
@@ -44,7 +48,7 @@ class Board extends Component {
   getList = id => {
     let newList
     this.state.lists.forEach(list => {
-      if (list.id == id) {
+      if (list.id === id) {
         newList = list
       }
     })
@@ -107,11 +111,16 @@ class Board extends Component {
 
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        {this.state.lists.map(list => (
-          <CardList key={list.id} id={list.id} cards={list.cards} />
-        ))}
-      </DragDropContext>
+      <Fragment>
+        <SideMenu />
+        <Container>
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            {this.state.lists.map(list => (
+              <CardList key={list.id} id={list.id} cards={list.cards} />
+            ))}
+          </DragDropContext>
+        </Container>
+      </Fragment>
     )
   }
 }
