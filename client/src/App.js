@@ -1,12 +1,13 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import Navbar from './components/Navbar'
 import Board from './views/board'
 
 export default () => (
   <Router>
     <div>
-      <div>Naven</div>
+      <Navbar />
       <Switch>
         <Route path="/" exact component={Board} />
 

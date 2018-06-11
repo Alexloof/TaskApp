@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { DragDropContext } from 'react-beautiful-dnd'
 import CardList from './components/CardList'
 
 const getItems = (count, offset = 0) =>
