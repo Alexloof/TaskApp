@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import styled from 'styled-components'
+import CardList from './components/CardList'
 
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k + offset}`,
+    id: `item-${k + offset + 1000 * Math.random()}`,
     content: `item ${k + offset}`
+  }))
+
+const getLists = count =>
+  Array.from({ length: count }, (v, k) => k).map(k => ({
+    id: `list-${k}`,
+    cards: getItems(10)
   }))
 
 const reorder = (list, startIndex, endIndex) => {
@@ -32,16 +38,18 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 class Board extends Component {
   state = {
-    items: getItems(10),
-    selected: getItems(5, 10)
+    lists: getLists(3)
   }
 
-  id2List = {
-    droppable: 'items',
-    droppable2: 'selected'
+  getList = id => {
+    let newList
+    this.state.lists.forEach(list => {
+      if (list.id == id) {
+        newList = list
+      }
+    })
+    return newList
   }
-
-  getList = id => this.state[this.id2List[id]]
 
   onDragEnd = result => {
     const { source, destination } = result
@@ -52,30 +60,47 @@ class Board extends Component {
     }
 
     if (source.droppableId === destination.droppableId) {
-      const items = reorder(
-        this.getList(source.droppableId),
-        source.index,
-        destination.index
-      )
+      const list = this.getList(source.droppableId)
 
-      let state = { items }
+      const cards = reorder(list.cards, source.index, destination.index)
 
-      if (source.droppableId === 'droppable2') {
-        state = { selected: items }
-      }
+      const state = { id: list.id, cards }
 
-      this.setState(state)
+      let newLists = []
+      let spot
+
+      this.state.lists.forEach((list, index) => {
+        if (list.id !== state.id) {
+          newLists.push(list)
+        } else {
+          spot = index
+        }
+      })
+
+      newLists.splice(spot, 0, state)
+
+      this.setState({
+        lists: [...newLists]
+      })
     } else {
       const result = move(
-        this.getList(source.droppableId),
-        this.getList(destination.droppableId),
+        this.getList(source.droppableId).cards,
+        this.getList(destination.droppableId).cards,
         source,
         destination
       )
 
+      let newLists = []
+      this.state.lists.forEach(list => {
+        if (result[list.id]) {
+          newLists.push({ id: list.id, cards: result[list.id] })
+        } else {
+          newLists.push(list)
+        }
+      })
+
       this.setState({
-        items: result.droppable,
-        selected: result.droppable2
+        lists: newLists
       })
     }
   }
@@ -83,46 +108,9 @@ class Board extends Component {
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div ref={provided.innerRef}>
-              {this.state.items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      {item.content}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-        <Droppable droppableId="droppable2">
-          {(provided, snapshot) => (
-            <div ref={provided.innerRef}>
-              {this.state.selected.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      {item.content}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
+        {this.state.lists.map(list => (
+          <CardList key={list.id} id={list.id} cards={list.cards} />
+        ))}
       </DragDropContext>
     )
   }
