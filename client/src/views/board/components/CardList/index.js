@@ -8,7 +8,7 @@ class CardList extends Component {
     return (
       <Droppable droppableId={this.props.id}>
         {(provided, snapshot) => (
-          <div ref={provided.innerRef} style={{ marginBottom: '20px' }}>
+          <div ref={provided.innerRef}>
             {this.props.cards.map((card, index) => (
               <Card key={card.id} {...card} index={index} />
             ))}
