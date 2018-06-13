@@ -5,7 +5,7 @@ import { CardContainer } from './style'
 
 class Card extends Component {
   render() {
-    const { id, index, content } = this.props
+    const { id, index } = this.props
     return (
       <Draggable draggableId={id} index={index}>
         {(provided, snapshot) => (

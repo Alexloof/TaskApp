@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
-import { Container } from './style'
+import { Container, ListsWrapper } from './style'
 
 import SideMenu from '../../components/SideMenu'
 import CardList from './components/CardList'
@@ -64,28 +64,39 @@ class Board extends Component {
     }
 
     if (source.droppableId === destination.droppableId) {
-      const list = this.getList(source.droppableId)
+      if (source.droppableId === '12345') {
+        const newLists = reorder(
+          this.state.lists,
+          source.index,
+          destination.index
+        )
+        this.setState({
+          lists: newLists
+        })
+      } else {
+        const list = this.getList(source.droppableId)
 
-      const cards = reorder(list.cards, source.index, destination.index)
+        const cards = reorder(list.cards, source.index, destination.index)
 
-      const state = { id: list.id, cards }
+        const state = { id: list.id, cards }
 
-      let newLists = []
-      let spot
+        let newLists = []
+        let spot
 
-      this.state.lists.forEach((list, index) => {
-        if (list.id !== state.id) {
-          newLists.push(list)
-        } else {
-          spot = index
-        }
-      })
+        this.state.lists.forEach((list, index) => {
+          if (list.id !== state.id) {
+            newLists.push(list)
+          } else {
+            spot = index
+          }
+        })
 
-      newLists.splice(spot, 0, state)
+        newLists.splice(spot, 0, state)
 
-      this.setState({
-        lists: [...newLists]
-      })
+        this.setState({
+          lists: [...newLists]
+        })
+      }
     } else {
       const result = move(
         this.getList(source.droppableId).cards,
@@ -115,9 +126,24 @@ class Board extends Component {
         <SideMenu />
         <Container>
           <DragDropContext onDragEnd={this.onDragEnd}>
-            {this.state.lists.map(list => (
-              <CardList key={list.id} id={list.id} cards={list.cards} />
-            ))}
+            <Droppable
+              droppableId={'12345'}
+              direction="horizontal"
+              type="BOARD"
+            >
+              {(provided, snapshot) => (
+                <ListsWrapper innerRef={provided.innerRef}>
+                  {this.state.lists.map((list, index) => (
+                    <CardList
+                      key={list.id}
+                      index={index}
+                      id={list.id}
+                      cards={list.cards}
+                    />
+                  ))}
+                </ListsWrapper>
+              )}
+            </Droppable>
             Add a list...
           </DragDropContext>
         </Container>

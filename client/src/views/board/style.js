@@ -7,3 +7,7 @@ export const Container = styled.div`
   display: flex;
   height: calc(100vh - 50px);
 `
+
+export const ListsWrapper = styled.div`
+  display: flex;
+`
