@@ -6,4 +6,5 @@ export const CardContainer = styled.div`
   border-radius: 5px;
   margin: 0 0 8px 0;
   user-select: none;
+  font-size: 14px;
 `

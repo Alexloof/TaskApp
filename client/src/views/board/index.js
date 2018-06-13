@@ -9,7 +9,7 @@ import CardList from './components/CardList'
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
     id: `item-${k + offset + 1000 * Math.random()}`,
-    content: `item ${k + offset}`
+    content: `Vi ska fixa så att hela helvetet inte brakar lös. Samling imorgon kl 20.00. ÖKA!`
   }))
 
 const getLists = count =>
@@ -42,7 +42,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 class Board extends Component {
   state = {
-    lists: getLists(3)
+    lists: getLists(5)
   }
 
   getList = id => {
@@ -141,6 +141,7 @@ class Board extends Component {
                       cards={list.cards}
                     />
                   ))}
+                  {provided.placeholder}
                 </ListsWrapper>
               )}
             </Droppable>

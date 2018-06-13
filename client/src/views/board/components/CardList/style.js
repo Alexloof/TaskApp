@@ -23,4 +23,5 @@ export const MetaInfo = styled.p`
 export const CardsWrapper = styled.div`
   overflow: auto;
   max-height: calc(100vh - 204px);
+  margin: 5px 0px;
 `
