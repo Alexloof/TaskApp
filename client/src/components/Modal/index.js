@@ -39,7 +39,6 @@ class Modal extends Component {
     return (
       <ReactModal
         isOpen={this.state.modalIsOpen}
-        //onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
         style={customStyles}
         contentLabel="Example Modal"
