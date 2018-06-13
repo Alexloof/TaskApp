@@ -118,6 +118,7 @@ class Board extends Component {
             {this.state.lists.map(list => (
               <CardList key={list.id} id={list.id} cards={list.cards} />
             ))}
+            Add a list...
           </DragDropContext>
         </Container>
       </Fragment>
