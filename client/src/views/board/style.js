@@ -5,4 +5,5 @@ export const Container = styled.div`
   margin-top: 50px;
   padding: 30px;
   display: flex;
+  height: calc(100vh - 50px);
 `

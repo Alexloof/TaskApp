@@ -3,7 +3,7 @@ import { Droppable } from 'react-beautiful-dnd'
 
 import Card from '../Card'
 
-import { ListContainer, Title, MetaInfo } from './style'
+import { ListContainer, Title, MetaInfo, CardsWrapper } from './style'
 
 class CardList extends Component {
   render() {
@@ -16,9 +16,12 @@ class CardList extends Component {
           >
             <Title>Title</Title>
             <MetaInfo>10 cards</MetaInfo>
-            {this.props.cards.map((card, index) => (
-              <Card key={card.id} {...card} index={index} />
-            ))}
+            <CardsWrapper>
+              {this.props.cards.map((card, index) => (
+                <Card key={card.id} {...card} index={index} />
+              ))}
+              {provided.placeholder}
+            </CardsWrapper>
             Add a card...
           </ListContainer>
         )}

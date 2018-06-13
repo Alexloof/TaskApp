@@ -14,6 +14,7 @@ class Card extends Component {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             isDragging={snapshot.isDragging}
+            style={provided.draggableProps.style}
           >
             {id}
           </CardContainer>
