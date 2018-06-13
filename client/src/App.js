@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import Modal from './components/Modal'
 import Navbar from './components/Navbar'
 import Board from './views/board'
 
@@ -13,6 +14,7 @@ export default () => (
 
         <Route component={NoMatch} />
       </Switch>
+      <Modal />
     </div>
   </Router>
 )
