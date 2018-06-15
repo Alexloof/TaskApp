@@ -7,7 +7,7 @@ import Icon from '../../../../components/Icon'
 import Avatar from '../../../../components/Avatar'
 import { openModal } from '../../../../components/Modal'
 
-const Div = () => <div>TJO HEJ </div>
+import CardDetails from '../CardDetails'
 
 class Card extends Component {
   render() {
@@ -21,7 +21,7 @@ class Card extends Component {
             {...provided.dragHandleProps}
             isDragging={snapshot.isDragging}
             style={provided.draggableProps.style}
-            onClick={() => openModal(<Div />)}
+            onClick={() => openModal(<CardDetails {...this.props} />)}
           >
             {content}
             <LowerSection>

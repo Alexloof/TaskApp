@@ -3,7 +3,7 @@ import ReactModal from 'react-modal'
 
 const customStyles = {
   content: {
-    top: '20%',
+    top: '25%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
