@@ -34,11 +34,6 @@ export const CardsWrapper = styled.div`
     width: 0.5em;
   }
 
-  ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-  }
-
   ::-webkit-scrollbar-thumb {
     background-color: #9a9a9a;
     outline: 1px solid slategrey;

@@ -7,10 +7,10 @@ export default () => {
   return (
     <SideMenu>
       <Title>Boards</Title>
-      <Link to="/">hej</Link>
-      <Link to="/t">hej</Link>
-      <Link to="/g">hej</Link>
-      <Link to="/j">hej</Link>
+      <Link to="/">Private</Link>
+      <Link to="/t">Family</Link>
+      <Link to="/g">Work</Link>
+      <Link to="/j">Others</Link>
     </SideMenu>
   )
 }
