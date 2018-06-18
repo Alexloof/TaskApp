@@ -16,11 +16,22 @@ export const ListContainer = styled.div`
 export const Title = styled.h2`
   font-weight: bold;
   font-size: 18px;
+  padding: 0px 10px;
 `
 
 export const MetaInfo = styled.p`
   color: gray;
   font-size: 14px;
+  padding: 0px 10px;
+`
+
+export const AddCardLink = styled.p`
+  color: #484848;
+  padding: 0px 10px;
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
 `
 
 export const CardsWrapper = styled.div`

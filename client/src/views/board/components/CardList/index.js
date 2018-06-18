@@ -2,8 +2,17 @@ import React, { Component } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 
 import Card from '../Card'
+import AddCardForm from '../AddCardForm'
 
-import { ListContainer, Title, MetaInfo, CardsWrapper } from './style'
+import { openModal } from '../../../../components/Modal'
+
+import {
+  ListContainer,
+  Title,
+  MetaInfo,
+  CardsWrapper,
+  AddCardLink
+} from './style'
 
 class CardList extends Component {
   render() {
@@ -29,7 +38,11 @@ class CardList extends Component {
                     ))}
                     {provided.placeholder}
                   </CardsWrapper>
-                  Add a card...
+                  <AddCardLink
+                    onClick={() => openModal(<AddCardForm {...this.props} />)}
+                  >
+                    Add a card...
+                  </AddCardLink>
                 </ListContainer>
               )}
             </Droppable>

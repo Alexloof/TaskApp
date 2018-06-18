@@ -16,6 +16,7 @@ const customStyles = {
 }
 
 let openModalFn
+let closeModalFn
 
 class Modal extends Component {
   state = {
@@ -25,6 +26,7 @@ class Modal extends Component {
 
   componentDidMount() {
     openModalFn = this.openModal
+    closeModalFn = this.closeModal
   }
 
   openModal = content => {
@@ -52,6 +54,10 @@ class Modal extends Component {
 
 export function openModal(content) {
   openModalFn(content)
+}
+
+export function clodeModal() {
+  closeModalFn()
 }
 
 export default Modal
