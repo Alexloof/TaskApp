@@ -4,6 +4,7 @@ export default styled.button`
   font-weight: bold;
   padding: 10px 30px;
   background: #fb8f64;
+  height: 40px;
   color: white;
   border: 0;
   font-size: 15px;
@@ -12,7 +13,11 @@ export default styled.button`
   box-shadow: 0px 3px 0px #737373;
   cursor: pointer;
   transition: 0.3s all ease;
-  &:hover {
+  &:hover,
+  &:active {
     background: #fda683;
+  }
+  &:focus {
+    outline: none;
   }
 `

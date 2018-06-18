@@ -5,6 +5,7 @@ import { Container, ListsWrapper } from './style'
 
 import SideMenu from '../../components/SideMenu'
 import CardList from './components/CardList'
+import AddListForm from './components/AddListForm'
 
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -145,7 +146,7 @@ class Board extends Component {
                 </ListsWrapper>
               )}
             </Droppable>
-            Add a list...
+            <AddListForm />
           </DragDropContext>
         </Container>
       </Fragment>
