@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ListContainer = styled.div`
   width: 280px;
   background: ${({ isDraggingOver }) =>
-    isDraggingOver ? '#a9cfff' : '#20a39e8a'};
+    isDraggingOver ? '#a9cfff' : '#9fcecc8a;'};
   border-radius: 5px;
   margin: 0 5px;
   padding: 15px 0px;
@@ -16,18 +16,18 @@ export const ListContainer = styled.div`
 export const Title = styled.h2`
   font-weight: bold;
   font-size: 18px;
-  padding: 0px 10px;
+  padding: 0px 15px;
 `
 
 export const MetaInfo = styled.p`
   color: gray;
   font-size: 14px;
-  padding: 0px 10px;
+  padding: 0px 15px;
 `
 
 export const AddCardLink = styled.p`
   color: #484848;
-  padding: 0px 10px;
+  padding: 0px 15px;
   &:hover,
   &:active {
     text-decoration: underline;

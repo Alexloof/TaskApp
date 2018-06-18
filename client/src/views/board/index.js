@@ -43,7 +43,8 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 class Board extends Component {
   state = {
-    lists: getLists(5)
+    lists: getLists(4),
+    activeMenu: true
   }
 
   getList = id => {
@@ -121,11 +122,20 @@ class Board extends Component {
     }
   }
 
+  toggleSideMenu = () => {
+    this.setState({
+      activeMenu: !this.state.activeMenu
+    })
+  }
+
   render() {
     return (
       <Fragment>
-        <SideMenu />
-        <Container>
+        <SideMenu
+          active={this.state.activeMenu}
+          toggleSideMenu={this.toggleSideMenu}
+        />
+        <Container activeMenu={this.state.activeMenu}>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable
               droppableId={'12345'}
