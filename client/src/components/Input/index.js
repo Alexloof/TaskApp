@@ -6,4 +6,6 @@ export default styled.input`
   border-radius: 3px;
   background: white;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.37);
+  border: 0;
+  height: 40px;
 `
