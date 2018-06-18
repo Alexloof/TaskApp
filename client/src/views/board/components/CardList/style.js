@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ListContainer = styled.div`
   width: 280px;
   background: ${({ isDraggingOver }) =>
-    isDraggingOver ? '#a9cfff' : '#d1dce8'};
+    isDraggingOver ? '#a9cfff' : '#20a39e8a'};
   border-radius: 5px;
   margin: 0 5px;
   padding: 15px 0px;

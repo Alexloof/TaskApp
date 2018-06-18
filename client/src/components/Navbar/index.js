@@ -1,11 +1,13 @@
 import React from 'react'
 
-import { Navbar, Logo, RightSection, Item } from './style'
+import { Navbar, Logo, RightSection, LeftSection, Item } from './style'
 
 export default () => {
   return (
     <Navbar>
-      <Logo>TaskApp</Logo>
+      <LeftSection>
+        <Logo href="/">TaskApp</Logo>
+      </LeftSection>
       <RightSection>
         <Item>Alexander</Item>
         <Item>Logout</Item>

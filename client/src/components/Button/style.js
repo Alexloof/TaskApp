@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledButton = styled.button`
   font-weight: bold;
   padding: 10px 30px;
-  background: #fb8f64;
+  background: #ff6a2e;
   min-height: 40px;
   height: fit-content;
   color: white;

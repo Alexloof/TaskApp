@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Navbar = styled.nav`
-  background: #7ef7d1;
+  background: white;
   color: #656565;
   height: 50px;
   display: flex;
@@ -9,16 +9,22 @@ export const Navbar = styled.nav`
   padding: 0 30px;
   letter-spacing: 1px;
   font-weight: bold;
-  box-shadow: 0px 2px 8px 0px #00000030;
+  box-shadow: 0px 1px 0px 0px #00000030;
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
 `
 
-export const Logo = styled.div`
+export const Logo = styled.a`
   font-size: 26px;
   letter-spacing: -1.5px;
+  text-decoration: none;
+  color: #ff6a2e;
+`
+
+export const LeftSection = styled.div`
+  display: flex;
   flex: 1;
 `
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const SideMenu = styled.aside`
-  background: #fda682;
+  background: #20a39e;
   width: 270px;
   position: fixed;
   height: calc(100vh - 50px);

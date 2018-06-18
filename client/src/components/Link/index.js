@@ -8,6 +8,6 @@ export default styled(NavLink)`
   font-size: 18px;
   padding: 8px 0px;
   &.active {
-    color: #ff53d1;
+    color: white;
   }
 `
