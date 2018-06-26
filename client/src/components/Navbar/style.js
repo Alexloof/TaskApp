@@ -30,9 +30,12 @@ export const LeftSection = styled.div`
 
 export const RightSection = styled.div`
   display: flex;
+  align-items: center;
 `
 
 export const Item = styled.a`
   padding: 0 20px;
+  font-size: 13px;
   cursor: pointer;
+  padding-top: 2px;
 `
