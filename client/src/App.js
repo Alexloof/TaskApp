@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Modal from './components/Modal'
 import Navbar from './components/Navbar'
 import Board from './views/board'
+import Login from './views/login'
 
 export default () => (
   <Router>
@@ -11,7 +12,7 @@ export default () => (
       <Navbar />
       <Switch>
         <Route path="/" exact component={Board} />
-
+        <Route path="/login" exact component={Login} />
         <Route component={NoMatch} />
       </Switch>
       <Modal />
