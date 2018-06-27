@@ -27,10 +27,19 @@ export const SubTitle = styled.h2`
   margin-bottom: 50px;
 `
 
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
 export const FacebookBtn = styled(Button)`
   background: rgb(59, 89, 152);
+  margin: 0 15px;
+  box-shadow: none;
 `
 
 export const GoogleBtn = styled(Button)`
   background: rgb(234, 67, 53);
+  margin: 0 15px;
+  box-shadow: none;
 `
