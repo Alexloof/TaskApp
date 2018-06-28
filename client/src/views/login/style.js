@@ -36,10 +36,16 @@ export const FacebookBtn = styled(Button)`
   background: rgb(59, 89, 152);
   margin: 0 15px;
   box-shadow: none;
+  &:hover {
+    background: rgb(111, 137, 191);
+  }
 `
 
 export const GoogleBtn = styled(Button)`
   background: rgb(234, 67, 53);
   margin: 0 15px;
   box-shadow: none;
+  &:hover {
+    background: rgb(249, 133, 124);
+  }
 `

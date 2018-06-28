@@ -6,6 +6,7 @@ import { Container, ListsWrapper } from './style'
 import SideMenu from '../../components/SideMenu'
 import CardList from './components/CardList'
 import AddListForm from './components/AddListForm'
+import withAuth from '../../lib/withAuth'
 
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -164,4 +165,4 @@ class Board extends Component {
   }
 }
 
-export default Board
+export default withAuth(Board)
