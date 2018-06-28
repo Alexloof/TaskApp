@@ -20,14 +20,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  avatar: {
+    type: String
+  },
   googleId: {
     type: String,
     default: null
-  },
-  // Don't return password unless specified to
-  password: {
-    type: String,
-    select: false
   }
 })
 

@@ -1,8 +1,6 @@
 require('dotenv').config()
 
 import { GraphQLServer, PubSub } from 'graphql-yoga'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
 import depthLimit from 'graphql-depth-limit'
 import helmet from 'helmet'
 import compression from 'compression'
@@ -37,7 +35,6 @@ const startServer = async () => {
 
   server.express.use(compression())
   server.express.use(helmet())
-  server.express.use(cookieParser())
 
   const ONE_YEAR = 31556952000
 

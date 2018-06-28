@@ -1,7 +1,5 @@
-import login from './login'
-import signup from './signup'
+import loginOrSignup from './loginOrSignup'
 
 export default {
-  login,
-  signup
+  loginOrSignup
 }
