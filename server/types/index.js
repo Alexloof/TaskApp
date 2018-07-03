@@ -1,5 +1,6 @@
 import User from './User'
 import Auth from './Auth'
+import Board from './Board'
 
 const Root = /* GraphQL */ `
   # The dummy queries and mutations are necessary because
@@ -22,4 +23,4 @@ const Root = /* GraphQL */ `
   }
 `
 
-export default [Root, User, Auth]
+export default [Root, User, Auth, Board]

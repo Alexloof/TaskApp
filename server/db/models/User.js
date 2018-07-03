@@ -26,6 +26,14 @@ const userSchema = new mongoose.Schema({
   googleId: {
     type: String,
     default: null
+  },
+  facebookId: {
+    type: String,
+    default: null
+  },
+  boards: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'board'
   }
 })
 

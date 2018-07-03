@@ -5,7 +5,10 @@ export default /* GraphQL */ `
     updatedAt: String!
     name: String!
     email: String!
+    avatar: String
     googleId: String
+    facebookId: String
+    boards: [Board!]
   }
 
   extend type Query {

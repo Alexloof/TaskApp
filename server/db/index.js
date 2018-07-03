@@ -5,6 +5,10 @@ import mongoose from 'mongoose'
 
 // Import all models
 import './models/User'
+import './models/Comment'
+import './models/Board'
+import './models/Task'
+import './models/TaskList'
 
 const MONGO_URL = process.env.MONGO_URL
 
