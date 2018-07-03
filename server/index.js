@@ -36,8 +36,6 @@ const startServer = async () => {
   server.express.use(compression())
   server.express.use(helmet())
 
-  const ONE_YEAR = 31556952000
-
   if (!dev) {
     server.express.set('trust proxy', 1)
   }
