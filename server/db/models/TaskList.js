@@ -13,6 +13,11 @@ const taskListSchema = new mongoose.Schema({
   order: {
     type: Number,
     required: true
+  },
+  board: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'board',
+    required: true
   }
 })
 

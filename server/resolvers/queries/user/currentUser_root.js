@@ -1,5 +1,3 @@
-import { getUserId } from '../../../utils'
-
 export default async (parent, args, ctx) => {
   try {
     if (!ctx.user) throw new Error('Not authenticated')

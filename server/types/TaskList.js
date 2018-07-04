@@ -5,6 +5,7 @@ export default /* GraphQL */ `
     createdAt: String!
     order: Int!
     tasks: [Task!]
+    board: Board!
   }
 
   extend type Mutation {

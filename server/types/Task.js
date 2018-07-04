@@ -7,6 +7,7 @@ export default /* GraphQL */ `
     order: Int!
     members: [User!]
     comments: [Comment!]
+    taskList: TaskList!
   }
 
   extend type Mutation {

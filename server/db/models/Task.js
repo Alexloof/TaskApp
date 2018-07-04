@@ -20,6 +20,11 @@ const taskSchema = new mongoose.Schema({
   members: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'user'
+  },
+  taskList: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'taskList',
+    required: true
   }
 })
 

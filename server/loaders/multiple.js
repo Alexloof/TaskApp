@@ -3,7 +3,6 @@ import _ from 'lodash'
 
 export default () =>
   new Dataloader(async objArray => {
-    //console.log(objArray)
     const model = objArray[0].model
     const field = objArray[0].field
     let offset
@@ -13,7 +12,14 @@ export default () =>
       limit = objArray[0].options.limit || ''
     }
 
-    const ids = objArray.map(obj => obj.data)
+    let ids
+    let dataIsArray = false
+    if (Array.isArray(objArray[0].data)) {
+      ids = objArray[0].data
+      dataIsArray = true
+    } else {
+      ids = objArray.map(obj => obj.data)
+    }
 
     let query = {}
     query[field] = { $in: ids }
@@ -38,5 +44,6 @@ export default () =>
       return array
     })
 
+    if (dataIsArray) return [arrayObject]
     return arrayObject
   })
