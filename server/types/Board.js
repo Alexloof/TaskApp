@@ -4,9 +4,14 @@ export default /* GraphQL */ `
     createdAt: String!
     name: String!
     members: [User!]!
+    taskLists: [TaskList!]
   }
 
   extend type Query {
-    boardByUser(id: String): Board
+    userBoards(userId: ID!): [Board!]
+  }
+
+  extend type Mutation {
+    addBoard(name: String!): Board!
   }
 `
