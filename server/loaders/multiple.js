@@ -14,6 +14,7 @@ export default () =>
 
     let ids
     let dataIsArray = false
+
     if (Array.isArray(objArray[0].data)) {
       ids = objArray[0].data
       dataIsArray = true
