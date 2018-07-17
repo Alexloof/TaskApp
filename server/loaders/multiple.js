@@ -12,12 +12,16 @@ export default () =>
       limit = objArray[0].options.limit || ''
     }
 
-    let ids
+    let ids = []
+    let dataIsArray = false
 
     if (Array.isArray(objArray[0].data)) {
-      // ids = objArray[0].data
-      // dataIsArray = true
-      ids = objArray.map(obj => obj.data[0])
+      // NOT FINISHED
+      dataIsArray = true
+      objArray.forEach(obj => {
+        obj.data.forEach(id => ids.push(id))
+      })
+      console.log(ids)
     } else {
       ids = objArray.map(obj => obj.data)
     }
@@ -44,6 +48,9 @@ export default () =>
       }
       return array
     })
+
+    // cant return an empty result when using dataloaders (output need same length as input)
+    if (dataIsArray && !!!arrayObject.length) return [arrayObject]
 
     return arrayObject
   })

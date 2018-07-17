@@ -12,6 +12,7 @@ export default /* GraphQL */ `
 
   extend type Mutation {
     addTask(taskListId: ID!, title: String!): Task!
+    addUserToTask(taskId: ID!): Task!
     reorderTask(
       id: ID!
       from: Int!
