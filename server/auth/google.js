@@ -28,6 +28,12 @@ export default server => {
             profile.emails[0].value) ||
           null
 
+        const avatar =
+          (profile.photos &&
+            profile.photos.length > 0 &&
+            profile.photos[0].value) ||
+          null
+
         const googleId = profile.id
 
         try {
@@ -46,6 +52,7 @@ export default server => {
           user = await User.create({
             email,
             name,
+            avatar,
             googleId
           })
 
