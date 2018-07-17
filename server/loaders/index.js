@@ -10,6 +10,7 @@ export default () => ({
   boards_ByUser: multiple(),
   taskLists_ByBoard: multiple(),
   tasks_ByTaskList: multiple(),
+  comments_ByTask: multiple(),
   // comments_ByPost: multiple(),
   // comments_ByCommentedBy: multiple(),
   // likes_ByPost: multiple(),
