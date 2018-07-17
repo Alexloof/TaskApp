@@ -13,11 +13,11 @@ export default () =>
     }
 
     let ids
-    let dataIsArray = false
 
     if (Array.isArray(objArray[0].data)) {
-      ids = objArray[0].data
-      dataIsArray = true
+      // ids = objArray[0].data
+      // dataIsArray = true
+      ids = objArray.map(obj => obj.data[0])
     } else {
       ids = objArray.map(obj => obj.data)
     }
@@ -45,6 +45,5 @@ export default () =>
       return array
     })
 
-    if (dataIsArray) return [arrayObject]
     return arrayObject
   })

@@ -21,6 +21,6 @@ const taskListSchema = new mongoose.Schema({
   }
 })
 
-const TaskList = mongoose.model('tastList', taskListSchema)
+const TaskList = mongoose.model('taskList', taskListSchema)
 
 export default TaskList
