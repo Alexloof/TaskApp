@@ -12,8 +12,7 @@ import {
 class Login extends Component {
   googleLogin = () => {
     console.log('login google')
-    localStorage.setItem('token', 'adadadad')
-    this.props.history.push('/')
+    window.location.href = 'http://localhost:4000/auth/google'
   }
 
   facebookLogin = () => {

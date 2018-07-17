@@ -27,7 +27,7 @@ export const ShowButton = styled.button`
   position: absolute;
   border: 0;
   right: -37px;
-  top: 18px;
+  top: 26px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   cursor: pointer;

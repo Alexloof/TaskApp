@@ -13,12 +13,24 @@ export default () => (
       <Switch>
         <Route path="/" exact component={Board} />
         <Route path="/login" exact component={Login} />
+        <Route path="/authcallback" component={Authcallback} />
         <Route component={NoMatch} />
       </Switch>
       <Modal />
     </div>
   </Router>
 )
+
+const Authcallback = ({ history, location: { search } }) => {
+  if (search.slice(1, 6) === 'token') {
+    const token = search.slice(7)
+    localStorage.setItem('token', token)
+    history.replace('/')
+  } else {
+    history.replace('/login')
+  }
+  return <div />
+}
 
 const NoMatch = ({ location }) => (
   <div>
