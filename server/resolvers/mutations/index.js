@@ -1,7 +1,11 @@
 import auth from './auth'
+import board from './board'
+import taskList from './taskList'
 
 export default {
   Mutation: {
-    ...auth
+    ...auth,
+    ...board,
+    ...taskList
   }
 }

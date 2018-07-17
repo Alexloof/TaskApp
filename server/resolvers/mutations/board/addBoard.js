@@ -9,7 +9,7 @@ export default async (parent, { name }, ctx) => {
       name,
       members: [ctx.user]
     })
-    const user = await findOne({ _id: ctx.user }).exec()
+    const user = await userModel.findOne({ _id: ctx.user }).exec()
     await userModel.findOneAndUpdate(
       { _id: ctx.user },
       { boards: [...user.boards, board._id] }
