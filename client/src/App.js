@@ -1,41 +1,58 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { ApolloProvider } from 'react-apollo'
+import { ApolloLink, split } from 'apollo-link'
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { WebSocketLink } from 'apollo-link-ws'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { getMainDefinition } from 'apollo-utilities'
 
-import Modal from './components/Modal'
-import Navbar from './components/Navbar'
-import Board from './views/board'
-import Login from './views/login'
+import Router from './router'
 
-export default () => (
-  <Router>
-    <div>
-      <Navbar />
-      <Switch>
-        <Route path="/" exact component={Board} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/authcallback" component={Authcallback} />
-        <Route component={NoMatch} />
-      </Switch>
-      <Modal />
-    </div>
-  </Router>
+const httpLink = new HttpLink({ uri: 'http://localhost:4000' })
+
+const middlewareLink = new ApolloLink((operation, forward) => {
+  // get the authentication token from local storage if it exists
+  const tokenValue = localStorage.getItem('token')
+  // return the headers to the context so httpLink can read them
+  operation.setContext({
+    headers: {
+      Authorization: tokenValue ? `Bearer ${tokenValue}` : ''
+    }
+  })
+  return forward(operation)
+})
+
+const httpLinkAuth = middlewareLink.concat(httpLink)
+
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:4000`,
+  options: {
+    reconnect: true,
+    connectionParams: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  }
+})
+
+const link = split(
+  // split based on operation type
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query)
+    return kind === 'OperationDefinition' && operation === 'subscription'
+  },
+  wsLink,
+  httpLinkAuth
 )
 
-const Authcallback = ({ history, location: { search } }) => {
-  if (search.slice(1, 6) === 'token') {
-    const token = search.slice(7)
-    localStorage.setItem('token', token)
-    history.replace('/')
-  } else {
-    history.replace('/login')
-  }
-  return <div />
-}
+const client = new ApolloClient({
+  link: ApolloLink.from([link]),
+  cache: new InMemoryCache(),
+  connectToDevTools: true
+})
 
-const NoMatch = ({ location }) => (
-  <div>
-    <h3>
-      No match for <code>{location.pathname}</code>
-    </h3>
-  </div>
+export default () => (
+  <ApolloProvider client={client}>
+    <Router />
+  </ApolloProvider>
 )
