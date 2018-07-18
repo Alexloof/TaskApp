@@ -5,14 +5,21 @@ import { SideMenu, Title, ShowButton } from './style'
 import Link from '../Link'
 import Icon from '../Icon'
 
-export default ({ active, toggleSideMenu }) => {
+const renderBoardLinks = boards => {
+  return boards.map(board => {
+    return (
+      <Link to="/" key={board._id}>
+        {board.name}
+      </Link>
+    )
+  })
+}
+
+export default ({ active, toggleSideMenu, boards }) => {
   return (
     <SideMenu active={active}>
       <Title>Boards</Title>
-      <Link to="/">Private</Link>
-      <Link to="/t">Family</Link>
-      <Link to="/g">Work</Link>
-      <Link to="/j">Others</Link>
+      {renderBoardLinks(boards)}
       <ShowButton onClick={toggleSideMenu}>
         {active ? (
           <Icon name="times" size="24px" style={{ marginLeft: '20px' }} />

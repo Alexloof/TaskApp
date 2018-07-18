@@ -16,25 +16,27 @@ import {
 
 class CardList extends Component {
   render() {
+    const { id, index, cards, name } = this.props
+
     return (
-      <Draggable draggableId={this.props.id} index={this.props.index}>
+      <Draggable draggableId={id} index={index}>
         {(providedDrag, snapshotDrag) => (
           <div
             ref={providedDrag.innerRef}
             {...providedDrag.draggableProps}
             {...providedDrag.dragHandleProps}
           >
-            <Droppable droppableId={this.props.id} type="LIST">
+            <Droppable droppableId={id} type="LIST">
               {(provided, snapshot) => (
                 <ListContainer
                   innerRef={provided.innerRef}
                   isDraggingOver={snapshot.isDraggingOver}
                 >
-                  <Title>Title</Title>
+                  <Title>{name}</Title>
                   <MetaInfo>10 cards</MetaInfo>
                   <CardsWrapper>
-                    {this.props.cards.map((card, index) => (
-                      <Card key={card.id} {...card} index={index} />
+                    {cards.map(card => (
+                      <Card key={card._id} {...card} index={card.order} />
                     ))}
                     {provided.placeholder}
                   </CardsWrapper>

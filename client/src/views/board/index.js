@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import { Query } from 'react-apollo'
+
+import USER_BOARDS from '../../api/queries/board/userBoards'
 
 import { Container, ListsWrapper } from './style'
 
@@ -131,36 +134,56 @@ class Board extends Component {
 
   render() {
     return (
-      <Fragment>
-        <SideMenu
-          active={this.state.activeMenu}
-          toggleSideMenu={this.toggleSideMenu}
-        />
-        <Container activeMenu={this.state.activeMenu}>
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <Droppable
-              droppableId={'12345'}
-              direction="horizontal"
-              type="BOARD"
-            >
-              {(provided, snapshot) => (
-                <ListsWrapper innerRef={provided.innerRef}>
-                  {this.state.lists.map((list, index) => (
-                    <CardList
-                      key={list.id}
-                      index={index}
-                      id={list.id}
-                      cards={list.cards}
-                    />
-                  ))}
-                  {provided.placeholder}
-                </ListsWrapper>
-              )}
-            </Droppable>
-            <AddListForm />
-          </DragDropContext>
-        </Container>
-      </Fragment>
+      <Query query={USER_BOARDS}>
+        {({ loading, data: { userBoards } }) => {
+          console.log(userBoards)
+
+          return (
+            <Fragment>
+              <SideMenu
+                active={this.state.activeMenu}
+                toggleSideMenu={this.toggleSideMenu}
+                boards={userBoards || []}
+              />
+              <Container activeMenu={this.state.activeMenu}>
+                {!loading && (
+                  <DragDropContext onDragEnd={this.onDragEnd}>
+                    <Droppable
+                      droppableId={'12345'}
+                      direction="horizontal"
+                      type="BOARD"
+                    >
+                      {(provided, snapshot) => (
+                        <ListsWrapper innerRef={provided.innerRef}>
+                          {/* {this.state.lists.map((list, index) => (
+                          <CardList
+                            key={list.id}
+                            index={index}
+                            id={list.id}
+                            cards={list.cards}
+                          />
+                        ))} */}
+                          {userBoards[0].taskLists.map(list => (
+                            <CardList
+                              key={list._id}
+                              index={list.order}
+                              id={list._id}
+                              cards={list.tasks}
+                              name={list.name}
+                            />
+                          ))}
+                          {provided.placeholder}
+                        </ListsWrapper>
+                      )}
+                    </Droppable>
+                    <AddListForm />
+                  </DragDropContext>
+                )}
+              </Container>
+            </Fragment>
+          )
+        }}
+      </Query>
     )
   }
 }
