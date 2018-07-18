@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  query userBoards {
-    userBoards {
+  query userBoard($id: ID!) {
+    userBoard(id: $id) {
       _id
       createdAt
       name
@@ -13,9 +13,11 @@ export default gql`
       taskLists {
         _id
         name
+        order
         tasks {
           _id
           title
+          order
           members {
             _id
             name

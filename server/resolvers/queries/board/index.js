@@ -1,7 +1,7 @@
 import members from './members'
 import taskLists from './taskLists'
 
-import userBoards from './userBoards_root'
+import userBoard from './userBoard_root'
 
 export default {
   Board: {
@@ -9,6 +9,6 @@ export default {
     taskLists
   },
   Query: {
-    userBoards
+    userBoard
   }
 }

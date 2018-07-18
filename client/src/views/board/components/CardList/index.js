@@ -33,7 +33,7 @@ class CardList extends Component {
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   <Title>{name}</Title>
-                  <MetaInfo>10 cards</MetaInfo>
+                  <MetaInfo>{cards.length} tasks</MetaInfo>
                   <CardsWrapper>
                     {cards.map(card => (
                       <Card key={card._id} {...card} index={card.order} />
@@ -43,7 +43,7 @@ class CardList extends Component {
                   <AddCardLink
                     onClick={() => openModal(<AddCardForm {...this.props} />)}
                   >
-                    Add a card...
+                    Add a task...
                   </AddCardLink>
                 </ListContainer>
               )}

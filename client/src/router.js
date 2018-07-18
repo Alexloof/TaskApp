@@ -12,6 +12,7 @@ export default () => (
       <Navbar />
       <Switch>
         <Route path="/" exact component={Board} />
+        <Route path="/boards/:id" exact component={Board} />
         <Route path="/login" exact component={Login} />
         <Route path="/authcallback" component={Authcallback} />
         <Route component={NoMatch} />

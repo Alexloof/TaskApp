@@ -11,7 +11,7 @@ import CardDetails from '../CardDetails'
 
 class Card extends Component {
   render() {
-    const { id, index, content } = this.props
+    const { id, index, title } = this.props
     return (
       <Draggable draggableId={id} index={index}>
         {(provided, snapshot) => (
@@ -23,7 +23,7 @@ class Card extends Component {
             style={provided.draggableProps.style}
             onClick={() => openModal(<CardDetails {...this.props} />)}
           >
-            {content}
+            {title}
             <LowerSection>
               <Icon
                 size="15px"

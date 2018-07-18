@@ -21,7 +21,7 @@ export default WrappedComponent => {
       if (!this.state.isAuth) {
         return null
       }
-      return <WrappedComponent />
+      return <WrappedComponent {...this.props} />
     }
   }
 }

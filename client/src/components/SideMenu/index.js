@@ -15,11 +15,11 @@ const renderBoardLinks = boards => {
   })
 }
 
-export default ({ active, toggleSideMenu, boards }) => {
+export default ({ active, toggleSideMenu }) => {
   return (
     <SideMenu active={active}>
       <Title>Boards</Title>
-      {renderBoardLinks(boards)}
+      {/* {renderBoardLinks()} */}
       <ShowButton onClick={toggleSideMenu}>
         {active ? (
           <Icon name="times" size="24px" style={{ marginLeft: '20px' }} />

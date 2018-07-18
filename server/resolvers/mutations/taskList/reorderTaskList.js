@@ -9,6 +9,43 @@ export default async (parent, { id, from, to }, ctx) => {
     if (taskList.order === to) return taskList
 
     if (taskList.order === from) {
+      let goingDown = false
+      if (from < to) {
+        goingDown = true
+      }
+
+      if (goingDown) {
+        await taskListModel
+          .update(
+            {
+              board: taskList.board,
+              order: { $gt: from, $lt: to + 1 }
+            },
+            {
+              $inc: { order: -1 }
+            },
+            {
+              multi: true
+            }
+          )
+          .exec()
+      } else {
+        await taskListModel
+          .update(
+            {
+              board: taskList.board,
+              order: { $gt: to - 1, $lt: from }
+            },
+            {
+              $inc: { order: 1 }
+            },
+            {
+              multi: true
+            }
+          )
+          .exec()
+      }
+
       const updatedTaskList = await taskListModel.findOneAndUpdate(
         { _id: id },
         {

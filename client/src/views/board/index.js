@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { Query } from 'react-apollo'
+import { withApollo } from 'react-apollo'
 
-import USER_BOARDS from '../../api/queries/board/userBoards'
+import USER_BOARD from '../../api/queries/board/userBoard'
+import REORDER_TASKLIST from '../../api/mutations/taskList/reorderTaskList'
 
 import { Container, ListsWrapper } from './style'
 
@@ -62,7 +64,7 @@ class Board extends Component {
   }
 
   onDragEnd = result => {
-    const { source, destination } = result
+    const { source, destination, draggableId } = result
 
     // dropped outside the list
     if (!destination) {
@@ -71,6 +73,9 @@ class Board extends Component {
 
     if (source.droppableId === destination.droppableId) {
       if (source.droppableId === '12345') {
+        console.log('Körs här')
+        console.log(this.props.client)
+        console.log(source, destination)
         const newLists = reorder(
           this.state.lists,
           source.index,
@@ -78,6 +83,15 @@ class Board extends Component {
         )
         this.setState({
           lists: newLists
+        })
+
+        this.props.client.mutate({
+          mutation: REORDER_TASKLIST,
+          variables: {
+            id: draggableId,
+            from: source.index,
+            to: destination.index
+          }
         })
       } else {
         const list = this.getList(source.droppableId)
@@ -134,16 +148,15 @@ class Board extends Component {
 
   render() {
     return (
-      <Query query={USER_BOARDS}>
-        {({ loading, data: { userBoards } }) => {
-          console.log(userBoards)
+      <Query query={USER_BOARD} variables={{ id: this.props.match.params.id }}>
+        {({ loading, data: { userBoard } }) => {
+          console.log(userBoard)
 
           return (
             <Fragment>
               <SideMenu
                 active={this.state.activeMenu}
                 toggleSideMenu={this.toggleSideMenu}
-                boards={userBoards || []}
               />
               <Container activeMenu={this.state.activeMenu}>
                 {!loading && (
@@ -156,14 +169,14 @@ class Board extends Component {
                       {(provided, snapshot) => (
                         <ListsWrapper innerRef={provided.innerRef}>
                           {/* {this.state.lists.map((list, index) => (
-                          <CardList
-                            key={list.id}
-                            index={index}
-                            id={list.id}
-                            cards={list.cards}
-                          />
-                        ))} */}
-                          {userBoards[0].taskLists.map(list => (
+                            <CardList
+                              key={list.id}
+                              index={index}
+                              id={list.id}
+                              cards={list.cards}
+                            />
+                          ))} */}
+                          {userBoard.taskLists.map(list => (
                             <CardList
                               key={list._id}
                               index={list.order}
@@ -188,4 +201,4 @@ class Board extends Component {
   }
 }
 
-export default withAuth(Board)
+export default withAuth(withApollo(Board))
