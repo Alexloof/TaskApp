@@ -7,9 +7,11 @@ export default () =>
     const field = objArray[0].field
     let offset
     let limit
+    let sort
     if (objArray[0].options) {
       offset = objArray[0].options.offset || ''
       limit = objArray[0].options.limit || ''
+      sort = objArray[0].options.sort || ''
     }
 
     let ids = []
@@ -30,6 +32,7 @@ export default () =>
     query[field] = { $in: ids }
     const result = await model
       .find(query)
+      .sort(sort)
       .skip(offset)
       .limit(limit)
       .exec()

@@ -4,7 +4,10 @@ export default async ({ _id }, args, { db, loaders }) => {
     return loaders.tasks_ByTaskList.load({
       data: _id,
       model: taskModel,
-      field: 'taskList'
+      field: 'taskList',
+      options: {
+        sort: 'order'
+      }
     })
   } catch (error) {
     throw new Error(error)
