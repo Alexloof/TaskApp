@@ -12,7 +12,7 @@ export default /* GraphQL */ `
 
   extend type Mutation {
     addTask(taskListId: ID!, title: String!): Task!
-    addUserToTask(taskId: ID!): Task!
+    addUserToTask(taskId: ID!, userId: ID!): Task!
     addDescToTask(taskId: ID!, description: String!): Task!
     reorderTask(
       id: ID!

@@ -1,4 +1,4 @@
-export default async (parent, { taskId }, ctx) => {
+export default async (parent, { taskId, userId }, ctx) => {
   try {
     if (!ctx.user) throw new Error('Not authenticated')
 
@@ -8,7 +8,7 @@ export default async (parent, { taskId }, ctx) => {
 
     if (task) {
       task.members.forEach(user => {
-        if (user == ctx.user) {
+        if (user == userId) {
           throw new Error('User already a member of the task')
         }
       })
@@ -18,7 +18,7 @@ export default async (parent, { taskId }, ctx) => {
 
     const updatedTask = await taskModel.findOneAndUpdate(
       { _id: taskId },
-      { members: [...task.members, ctx.user] }
+      { members: [...task.members, userId] }
     )
 
     return updatedTask

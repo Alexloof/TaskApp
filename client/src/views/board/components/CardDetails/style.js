@@ -25,8 +25,3 @@ export const SubTitle = styled.h4`
     cursor: pointer;
   }
 `
-
-export const MembersGroup = styled.div`
-  display: flex;
-  align-items: center;
-`

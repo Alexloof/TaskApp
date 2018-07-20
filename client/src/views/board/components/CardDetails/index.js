@@ -3,12 +3,12 @@ import { Mutation } from 'react-apollo'
 
 import ADD_DESC_TO_TASK from '../../../../api/mutations/task/addDescToTask'
 
-import { Container, Title, SubTitle, MembersGroup } from './style'
+import CardMembers from '../CardMembers'
+
+import { Container, Title, SubTitle } from './style'
 
 import Textarea from '../../../../components/Textarea'
 import Button from '../../../../components/Button'
-import Icon from '../../../../components/Icon'
-import Avatar from '../../../../components/Avatar'
 
 class CardDetails extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class CardDetails extends Component {
   }
 
   render() {
-    const { title, _id, description } = this.props
+    const { title, _id, description, members } = this.props
     const { taskDesc, showEditTextarea } = this.state
     return (
       <Mutation
@@ -39,16 +39,7 @@ class CardDetails extends Component {
           <Container>
             <Title>{title}</Title>
             <SubTitle>Members</SubTitle>
-            <MembersGroup>
-              <Avatar src="https://gfx.aftonbladet-cdn.se/image-c/16045605/500/normal/202f3fbc7c3ca/bard034.jpg" />
-              <Avatar src="https://gfx.aftonbladet-cdn.se/image-c/16045605/500/normal/202f3fbc7c3ca/bard034.jpg" />
-              <Icon
-                size="17px"
-                name="plus"
-                style={{ cursor: 'pointer', marginLeft: '5px' }}
-              />
-            </MembersGroup>
-
+            <CardMembers taskMembers={members} taskId={_id} />
             <SubTitle>
               Description
               <span
