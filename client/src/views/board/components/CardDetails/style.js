@@ -16,4 +16,17 @@ export const SubTitle = styled.h4`
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 20px;
+  span {
+    color: #7a7a7a;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: normal;
+    cursor: pointer;
+  }
+`
+
+export const MembersGroup = styled.div`
+  display: flex;
+  align-items: center;
 `

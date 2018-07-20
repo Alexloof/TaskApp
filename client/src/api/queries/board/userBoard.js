@@ -18,6 +18,7 @@ export default gql`
           _id
           title
           order
+          description
           members {
             _id
             name
