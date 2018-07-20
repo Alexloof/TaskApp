@@ -16,7 +16,7 @@ import {
 
 class CardList extends Component {
   render() {
-    const { id, index, cards, name } = this.props
+    const { id, index, cards, name, boardMembers } = this.props
 
     return (
       <Draggable draggableId={id} index={index}>
@@ -36,7 +36,12 @@ class CardList extends Component {
                   <MetaInfo>{cards.length} tasks</MetaInfo>
                   <CardsWrapper>
                     {cards.map(card => (
-                      <Card key={card._id} {...card} index={card.order} />
+                      <Card
+                        key={card._id}
+                        {...card}
+                        index={card.order}
+                        boardMembers={boardMembers}
+                      />
                     ))}
                     {provided.placeholder}
                   </CardsWrapper>

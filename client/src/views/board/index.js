@@ -182,6 +182,7 @@ class Board extends Component {
                               index={list.order}
                               id={list._id}
                               cards={list.tasks}
+                              boardMembers={userBoard.members}
                               name={list.name}
                             />
                           ))}

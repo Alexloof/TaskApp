@@ -28,7 +28,7 @@ class CardDetails extends Component {
   }
 
   render() {
-    const { title, _id, description, members } = this.props
+    const { title, _id, description, members, boardMembers } = this.props
     const { taskDesc, showEditTextarea } = this.state
     return (
       <Mutation
@@ -39,7 +39,11 @@ class CardDetails extends Component {
           <Container>
             <Title>{title}</Title>
             <SubTitle>Members</SubTitle>
-            <CardMembers taskMembers={members} taskId={_id} />
+            <CardMembers
+              taskMembers={members}
+              boardMembers={boardMembers}
+              taskId={_id}
+            />
             <SubTitle>
               Description
               <span
