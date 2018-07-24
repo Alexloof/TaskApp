@@ -3,14 +3,16 @@ import ReactModal from 'react-modal'
 
 const customStyles = {
   content: {
-    top: '10%',
-    left: '50%',
-    marginLeft: '-371px',
+    top: '13%',
+    left: 'auto',
     right: 'auto',
     bottom: 'auto'
   },
   overlay: {
-    background: '#00000082'
+    background: '#00000082',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 }
 
