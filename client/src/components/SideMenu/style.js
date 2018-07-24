@@ -18,6 +18,8 @@ export const Title = styled.p`
   font-size: 18px;
   border-bottom: 1px solid #0000001f;
   padding-bottom: 10px;
+  color: #464646;
+  font-weight: 300;
 `
 
 export const ShowButton = styled.button`

@@ -3,14 +3,15 @@ import React from 'react'
 import { SideMenu, Title, ShowButton } from './style'
 
 import Link from '../Link'
+import NavLink from '../NavLink'
 import Icon from '../Icon'
 
 const renderBoardLinks = boards => {
   return boards.map(board => {
     return (
-      <Link to={`/app/boards/${board._id}`} key={board._id}>
+      <NavLink to={`/app/boards/${board._id}`} key={board._id}>
         {board.name}
-      </Link>
+      </NavLink>
     )
   })
 }
@@ -18,7 +19,9 @@ const renderBoardLinks = boards => {
 export default ({ active, toggleSideMenu, boards }) => {
   return (
     <SideMenu active={active}>
-      <Title>Boards</Title>
+      <Link to="/app">
+        <Title>Boards</Title>
+      </Link>
       {renderBoardLinks(boards)}
       <ShowButton onClick={toggleSideMenu}>
         {active ? (
