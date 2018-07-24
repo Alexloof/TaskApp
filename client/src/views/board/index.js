@@ -6,12 +6,10 @@ import { withApollo } from 'react-apollo'
 import USER_BOARD from '../../api/queries/board/userBoard'
 import REORDER_TASKLIST from '../../api/mutations/taskList/reorderTaskList'
 
-import { Container, ListsWrapper } from './style'
+import { ListsWrapper } from './style'
 
-import SideMenu from '../../components/SideMenu'
 import CardList from './components/CardList'
 import AddListForm from './components/AddListForm'
-import withAuth from '../../lib/withAuth'
 
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -49,8 +47,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 class Board extends Component {
   state = {
-    lists: getLists(4),
-    activeMenu: true
+    lists: getLists(4)
   }
 
   getList = id => {
@@ -140,35 +137,28 @@ class Board extends Component {
     }
   }
 
-  toggleSideMenu = () => {
-    this.setState({
-      activeMenu: !this.state.activeMenu
-    })
-  }
-
   render() {
     return (
-      <Query query={USER_BOARD} variables={{ id: this.props.match.params.id }}>
-        {({ loading, data: { userBoard } }) => {
-          console.log(userBoard)
-
-          return (
-            <Fragment>
-              <SideMenu
-                active={this.state.activeMenu}
-                toggleSideMenu={this.toggleSideMenu}
-              />
-              <Container activeMenu={this.state.activeMenu}>
-                {!loading && (
-                  <DragDropContext onDragEnd={this.onDragEnd}>
-                    <Droppable
-                      droppableId={'12345'}
-                      direction="horizontal"
-                      type="BOARD"
-                    >
-                      {(provided, snapshot) => (
-                        <ListsWrapper innerRef={provided.innerRef}>
-                          {/* {this.state.lists.map((list, index) => (
+      this.props.match.params.id && (
+        <Query
+          query={USER_BOARD}
+          variables={{ id: this.props.match.params.id }}
+        >
+          {({ loading, error, data }) => {
+            return (
+              <Fragment>
+                {error && <h1>Could not find the board...</h1>}
+                {!loading &&
+                  !error && (
+                    <DragDropContext onDragEnd={this.onDragEnd}>
+                      <Droppable
+                        droppableId={'12345'}
+                        direction="horizontal"
+                        type="BOARD"
+                      >
+                        {(provided, snapshot) => (
+                          <ListsWrapper innerRef={provided.innerRef}>
+                            {/* {this.state.lists.map((list, index) => (
                             <CardList
                               key={list.id}
                               index={index}
@@ -176,30 +166,30 @@ class Board extends Component {
                               cards={list.cards}
                             />
                           ))} */}
-                          {userBoard.taskLists.map(list => (
-                            <CardList
-                              key={list._id}
-                              index={list.order}
-                              id={list._id}
-                              cards={list.tasks}
-                              boardMembers={userBoard.members}
-                              name={list.name}
-                            />
-                          ))}
-                          {provided.placeholder}
-                        </ListsWrapper>
-                      )}
-                    </Droppable>
-                    <AddListForm />
-                  </DragDropContext>
-                )}
-              </Container>
-            </Fragment>
-          )
-        }}
-      </Query>
+                            {data.userBoard.taskLists.map(list => (
+                              <CardList
+                                key={list._id}
+                                index={list.order}
+                                id={list._id}
+                                cards={list.tasks}
+                                boardMembers={data.userBoard.members}
+                                name={list.name}
+                              />
+                            ))}
+                            {provided.placeholder}
+                          </ListsWrapper>
+                        )}
+                      </Droppable>
+                      <AddListForm />
+                    </DragDropContext>
+                  )}
+              </Fragment>
+            )
+          }}
+        </Query>
+      )
     )
   }
 }
 
-export default withAuth(withApollo(Board))
+export default withApollo(Board)
