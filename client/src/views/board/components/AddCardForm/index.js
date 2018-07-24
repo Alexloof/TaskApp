@@ -4,7 +4,7 @@ import { StyledForm, Title, SubTitle } from './style'
 
 import Button from '../../../../components/Button'
 import Input from '../../../../components/Input'
-import { clodeModal } from '../../../../components/Modal'
+import { closeModal } from '../../../../components/Modal'
 
 class AddCardForm extends Component {
   state = {
@@ -15,7 +15,7 @@ class AddCardForm extends Component {
     e.preventDefault()
     console.log('ADD CARD', this.state.cardTitle)
 
-    clodeModal()
+    closeModal()
   }
 
   render() {

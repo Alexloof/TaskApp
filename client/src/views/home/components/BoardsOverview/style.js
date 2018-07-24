@@ -28,6 +28,8 @@ export const BoardCard = styled.div`
   cursor: pointer;
   background-image: linear-gradient(164deg, #81fbb8 10%, #20a39e33 100%);
   border-radius: 12px;
+  background-image: ${props =>
+    `linear-gradient(164deg, ${props.color} 20%, ${props.color}33 100%)`};
 `
 
 export const Title = styled.h1`

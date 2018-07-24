@@ -57,7 +57,7 @@ export function openModal(content) {
   openModalFn(content)
 }
 
-export function clodeModal() {
+export function closeModal() {
   closeModalFn()
 }
 

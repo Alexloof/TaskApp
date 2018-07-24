@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledButton = styled.button`
   font-weight: bold;
   padding: 10px 30px;
-  background: #ff6a2e;
+  background-image: linear-gradient(166deg, #ffae35 10%, #ff6a2e 100%);
   min-height: 40px;
   height: fit-content;
   color: white;
@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
   transition: 0.3s all ease;
   &:hover,
   &:active {
-    background: #fda683;
+    background-image: linear-gradient(166deg, #ffc56e 10%, #ff9970 100%);
   }
   &:focus {
     outline: none;
