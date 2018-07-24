@@ -139,26 +139,22 @@ class Board extends Component {
 
   render() {
     return (
-      this.props.match.params.id && (
-        <Query
-          query={USER_BOARD}
-          variables={{ id: this.props.match.params.id }}
-        >
-          {({ loading, error, data }) => {
-            return (
-              <Fragment>
-                {error && <h1>Could not find the board...</h1>}
-                {!loading &&
-                  !error && (
-                    <DragDropContext onDragEnd={this.onDragEnd}>
-                      <Droppable
-                        droppableId={'12345'}
-                        direction="horizontal"
-                        type="BOARD"
-                      >
-                        {(provided, snapshot) => (
-                          <ListsWrapper innerRef={provided.innerRef}>
-                            {/* {this.state.lists.map((list, index) => (
+      <Query query={USER_BOARD} variables={{ id: this.props.match.params.id }}>
+        {({ loading, error, data }) => {
+          return (
+            <Fragment>
+              {error && <h1>Could not find the board...</h1>}
+              {!loading &&
+                !error && (
+                  <DragDropContext onDragEnd={this.onDragEnd}>
+                    <Droppable
+                      droppableId={'12345'}
+                      direction="horizontal"
+                      type="BOARD"
+                    >
+                      {(provided, snapshot) => (
+                        <ListsWrapper innerRef={provided.innerRef}>
+                          {/* {this.state.lists.map((list, index) => (
                             <CardList
                               key={list.id}
                               index={index}
@@ -166,28 +162,27 @@ class Board extends Component {
                               cards={list.cards}
                             />
                           ))} */}
-                            {data.userBoard.taskLists.map(list => (
-                              <CardList
-                                key={list._id}
-                                index={list.order}
-                                id={list._id}
-                                cards={list.tasks}
-                                boardMembers={data.userBoard.members}
-                                name={list.name}
-                              />
-                            ))}
-                            {provided.placeholder}
-                          </ListsWrapper>
-                        )}
-                      </Droppable>
-                      <AddListForm />
-                    </DragDropContext>
-                  )}
-              </Fragment>
-            )
-          }}
-        </Query>
-      )
+                          {data.userBoard.taskLists.map(list => (
+                            <CardList
+                              key={list._id}
+                              index={list.order}
+                              id={list._id}
+                              cards={list.tasks}
+                              boardMembers={data.userBoard.members}
+                              name={list.name}
+                            />
+                          ))}
+                          {provided.placeholder}
+                        </ListsWrapper>
+                      )}
+                    </Droppable>
+                    <AddListForm />
+                  </DragDropContext>
+                )}
+            </Fragment>
+          )
+        }}
+      </Query>
     )
   }
 }

@@ -8,18 +8,18 @@ import Icon from '../Icon'
 const renderBoardLinks = boards => {
   return boards.map(board => {
     return (
-      <Link to="/" key={board._id}>
+      <Link to={`/app/boards/${board._id}`} key={board._id}>
         {board.name}
       </Link>
     )
   })
 }
 
-export default ({ active, toggleSideMenu }) => {
+export default ({ active, toggleSideMenu, boards }) => {
   return (
     <SideMenu active={active}>
       <Title>Boards</Title>
-      {/* {renderBoardLinks()} */}
+      {renderBoardLinks(boards)}
       <ShowButton onClick={toggleSideMenu}>
         {active ? (
           <Icon name="times" size="24px" style={{ marginLeft: '20px' }} />

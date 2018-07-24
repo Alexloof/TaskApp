@@ -9,6 +9,7 @@ export default /* GraphQL */ `
 
   extend type Query {
     userBoard(id: ID!): Board!
+    userBoards: [Board!]
   }
 
   extend type Mutation {
