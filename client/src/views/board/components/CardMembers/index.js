@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_USER_TO_TASK from '../../../../api/mutations/task/addUserToTask'
+import ADD_USERS_TO_TASK from '../../../../api/mutations/task/addUsersToTask'
 
 import { MembersGroup, MemberBox, MemberListItem } from './style'
 
 import Icon from '../../../../components/Icon'
 import Avatar from '../../../../components/Avatar'
+import Button from '../../../../components/Button'
 
 export default class CardMembers extends Component {
   constructor(props) {
@@ -51,10 +52,10 @@ export default class CardMembers extends Component {
 
     return (
       <Mutation
-        mutation={ADD_USER_TO_TASK}
+        mutation={ADD_USERS_TO_TASK}
         variables={{ taskId, userId: selectedUserId }}
       >
-        {(addUserToTask, { loading, error, data }) => (
+        {(addUsersToTask, { loading, error, data }) => (
           <Fragment>
             <MembersGroup>
               <Avatar src="https://gfx.aftonbladet-cdn.se/image-c/16045605/500/normal/202f3fbc7c3ca/bard034.jpg" />
@@ -69,19 +70,24 @@ export default class CardMembers extends Component {
               />
             </MembersGroup>
             {showAddMemberBox && (
-              <MemberBox>
-                {boardMembers.map(member => {
-                  return (
-                    <MemberListItem
-                      alreadyMember={taskMembers.includes(member._id)}
-                      onClick={() => this.onToggleMember(member._id)}
-                      key={member._id}
-                    >
-                      {member.name}
-                    </MemberListItem>
-                  )
-                })}
-              </MemberBox>
+              <Fragment>
+                <MemberBox>
+                  {boardMembers.map(member => {
+                    const alreadyMember = taskMembers.includes(member._id)
+                    return (
+                      <MemberListItem
+                        alreadyMember={alreadyMember}
+                        onClick={() => this.onToggleMember(member._id)}
+                        key={member._id}
+                      >
+                        {member.name}
+                        {alreadyMember && <Icon name="check" size="17px" />}
+                      </MemberListItem>
+                    )
+                  })}
+                </MemberBox>
+                <Button>Save</Button>
+              </Fragment>
             )}
           </Fragment>
         )}

@@ -1,9 +1,9 @@
 import addTask from './addTask'
-import addUserToTask from './addUserToTask'
+import addUsersToTask from './addUsersToTask'
 import addDescToTask from './addDescToTask'
 
 export default {
   addTask,
-  addUserToTask,
+  addUsersToTask,
   addDescToTask
 }

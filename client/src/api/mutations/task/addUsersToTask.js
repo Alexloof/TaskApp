@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  mutation addUserToTask($taskId: ID!, $userId: ID!) {
-    addUserToTask(taskId: $taskId, userId: $userId) {
+  mutation addUsersToTask($taskId: ID!, $userIds: [ID!]) {
+    addUsersToTask(taskId: $taskId, userIds: $userIds) {
       _id
       createdAt
       description
