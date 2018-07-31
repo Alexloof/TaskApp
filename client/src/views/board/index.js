@@ -176,7 +176,7 @@ class Board extends Component {
                         </ListsWrapper>
                       )}
                     </Droppable>
-                    <AddListForm />
+                    <AddListForm boardId={this.props.match.params.id} />
                   </DragDropContext>
                 )}
             </Fragment>
