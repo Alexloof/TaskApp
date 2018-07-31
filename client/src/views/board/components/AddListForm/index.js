@@ -17,12 +17,13 @@ class AddListForm extends Component {
 
   addNewList = (e, addTaskList) => {
     e.preventDefault()
-
-    addTaskList()
-    this.setState({
-      listName: '',
-      showForm: false
-    })
+    if (this.state.listName) {
+      addTaskList()
+      this.setState({
+        listName: '',
+        showForm: false
+      })
+    }
   }
 
   onInputType = e => {

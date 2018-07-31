@@ -20,10 +20,15 @@ export default () =>
     if (Array.isArray(objArray[0].data)) {
       // NOT FINISHED
       dataIsArray = true
+
+      // push an empty item if data is empty to keep the array length the same (dataloader)
       objArray.forEach(obj => {
-        obj.data.forEach(id => ids.push(id))
+        if (!!obj.data.length) {
+          obj.data.forEach(id => ids.push(id))
+        } else {
+          ids.push([])
+        }
       })
-      console.log(ids)
     } else {
       ids = objArray.map(obj => obj.data)
     }

@@ -16,17 +16,17 @@ import {
 
 class CardList extends Component {
   render() {
-    const { id, index, cards, name, boardMembers } = this.props
+    const { _id, index, cards, name, boardMembers } = this.props
 
     return (
-      <Draggable draggableId={id} index={index}>
+      <Draggable draggableId={_id} index={index}>
         {(providedDrag, snapshotDrag) => (
           <div
             ref={providedDrag.innerRef}
             {...providedDrag.draggableProps}
             {...providedDrag.dragHandleProps}
           >
-            <Droppable droppableId={id} type="LIST">
+            <Droppable droppableId={_id} type="LIST">
               {(provided, snapshot) => (
                 <ListContainer
                   innerRef={provided.innerRef}

@@ -143,7 +143,7 @@ class Board extends Component {
         {({ loading, error, data }) => {
           return (
             <Fragment>
-              {error && <h1>Could not find the board...</h1>}
+              {error && <h1>Could not find the board..., ${error}</h1>}
               {!loading &&
                 !error && (
                   <DragDropContext onDragEnd={this.onDragEnd}>
@@ -166,7 +166,7 @@ class Board extends Component {
                             <CardList
                               key={list._id}
                               index={list.order}
-                              id={list._id}
+                              _id={list._id}
                               cards={list.tasks}
                               boardMembers={data.userBoard.members}
                               name={list.name}
