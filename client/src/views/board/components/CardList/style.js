@@ -2,8 +2,10 @@ import styled from 'styled-components'
 
 export const ListContainer = styled.div`
   width: 280px;
-  background: ${({ isDraggingOver }) =>
-    isDraggingOver ? '#a9cfff' : '#9fcecc8a;'};
+  background-image: ${({ isDraggingOver }) =>
+    isDraggingOver
+      ? 'linear-gradient(166deg, red 10%, black 100%)'
+      : 'linear-gradient(166deg,#0bd0be 10%,#60dad5 100%)'};
   border-radius: 5px;
   margin: 0 5px;
   padding: 15px 0px;

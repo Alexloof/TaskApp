@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_USERS_TO_TASK from '../../../../api/mutations/task/addUsersToTask'
+import ADD_USERS_TO_TASK from 'api/mutations/task/addUsersToTask'
 
 import { MembersGroup, MemberBox, MemberListItem } from './style'
 
-import Icon from '../../../../components/Icon'
-import Avatar from '../../../../components/Avatar'
-import Button from '../../../../components/Button'
+import { Avatar, Button, Icon } from 'components'
 
 export default class CardMembers extends Component {
   constructor(props) {
