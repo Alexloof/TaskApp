@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_DESC_TO_TASK from '../../../../api/mutations/task/addDescToTask'
+import ADD_DESC_TO_TASK from 'api/mutations/task/addDescToTask'
 
 import CardMembers from '../CardMembers'
 
 import { Container, Title, SubTitle } from './style'
 
-import Textarea from '../../../../components/Textarea'
-import Button from '../../../../components/Button'
+import { Textarea, Button } from 'components'
 
 class CardDetails extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      taskDesc: props.description,
+      taskDesc: props.description || '',
       showEditTextarea: false
     }
   }

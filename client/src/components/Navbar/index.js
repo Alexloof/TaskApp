@@ -1,14 +1,16 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import { withApollo } from 'react-apollo'
 
 import { Navbar, Logo, RightSection, LeftSection, Item } from './style'
 
-import Avatar from '../Avatar'
+import { Avatar } from 'components'
 
 const logout = history => {
-  console.log('logout')
-  localStorage.removeItem('token')
-  history.push('/login')
+  this.props.client.resetStore().then(() => {
+    localStorage.removeItem('token')
+    history.push('/login')
+  })
 }
 
 const Nav = ({ history }) => {
@@ -29,4 +31,4 @@ const Nav = ({ history }) => {
   )
 }
 
-export default withRouter(Nav)
+export default withRouter(withApollo(Nav))

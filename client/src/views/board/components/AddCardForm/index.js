@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_TASK from '../../../../api/mutations/task/addTask'
+import ADD_TASK from 'api/mutations/task/addTask'
+
+import { Button, Input } from 'components'
+import { closeModal } from 'components/Modal'
 
 import { StyledForm, Title, SubTitle } from './style'
-
-import Button from '../../../../components/Button'
-import Input from '../../../../components/Input'
-import { closeModal } from '../../../../components/Modal'
 
 class AddCardForm extends Component {
   state = {

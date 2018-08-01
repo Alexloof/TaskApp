@@ -1,13 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_TASK_LIST from '../../../../api/mutations/taskList/addTaskList'
+import ADD_TASK_LIST from 'api/mutations/taskList/addTaskList'
 
 import { StyledForm } from './style'
 
-import Button from '../../../../components/Button'
-import Input from '../../../../components/Input'
-import Icon from '../../../../components/Icon'
+import { Button, Icon, Input } from 'components'
 
 class AddListForm extends Component {
   state = {

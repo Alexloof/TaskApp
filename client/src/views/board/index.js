@@ -3,13 +3,13 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { Query } from 'react-apollo'
 import { withApollo } from 'react-apollo'
 
-import USER_BOARD from '../../api/queries/board/userBoard'
-import REORDER_TASKLIST from '../../api/mutations/taskList/reorderTaskList'
+import USER_BOARD from 'api/queries/board/userBoard'
+import REORDER_TASKLIST from 'api/mutations/taskList/reorderTaskList'
 
 import { ListsWrapper } from './style'
 
 import CardList from './components/CardList'
-import AddListForm from './components/AddListForm'
+import BoardNav from './components/BoardNav'
 
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -147,6 +147,7 @@ class Board extends Component {
               {!loading &&
                 !error && (
                   <DragDropContext onDragEnd={this.onDragEnd}>
+                    <BoardNav board={data.userBoard} />
                     <Droppable
                       droppableId={'12345'}
                       direction="horizontal"
@@ -176,7 +177,6 @@ class Board extends Component {
                         </ListsWrapper>
                       )}
                     </Droppable>
-                    <AddListForm boardId={this.props.match.params.id} />
                   </DragDropContext>
                 )}
             </Fragment>

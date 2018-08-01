@@ -2,9 +2,7 @@ import React from 'react'
 
 import { SideMenu, Title, ShowButton } from './style'
 
-import Link from '../Link'
-import NavLink from '../NavLink'
-import Icon from '../Icon'
+import { Icon, NavLink, Link } from 'components'
 
 const renderBoardLinks = boards => {
   return boards.map(board => {

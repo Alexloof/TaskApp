@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactModal from 'react-modal'
+import { Transition } from 'react-spring'
 
 const customStyles = {
   content: {
@@ -47,7 +48,15 @@ class Modal extends Component {
         contentLabel="Example Modal"
         ariaHideApp={false}
       >
-        {this.state.content}
+        <Transition
+          from={{ opacity: 0 }}
+          enter={{ opacity: 1 }}
+          leave={{ opacity: 0 }}
+        >
+          {this.state.content
+            ? styles => <div style={styles}>{this.state.content} </div>
+            : styles => <div style={styles}>{this.state.content} </div>}
+        </Transition>
       </ReactModal>
     )
   }

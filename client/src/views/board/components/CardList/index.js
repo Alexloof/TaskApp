@@ -4,7 +4,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import Card from '../Card'
 import AddCardForm from '../AddCardForm'
 
-import { openModal } from '../../../../components/Modal'
+import { openModal } from 'components/Modal'
 
 import {
   ListContainer,
