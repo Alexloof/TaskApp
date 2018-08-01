@@ -16,7 +16,7 @@ export default () => (
     <div>
       <Navbar />
       <Switch>
-        <Route path="/" exact component={Bajs} />
+        <Route path="/" exact component={ROOT} />
         <Route path="/app" component={Home} />
         <Route path="/login" exact component={Login} />
         <Route path="/authcallback" component={Authcallback} />
@@ -27,7 +27,7 @@ export default () => (
   </Router>
 )
 
-const Bajs = () => {
+const ROOT = () => {
   return localStorage.getItem('token') ? (
     <Redirect to="/app" />
   ) : (

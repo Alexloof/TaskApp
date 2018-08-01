@@ -10,6 +10,7 @@ export const MemberBox = styled.ul`
   overflow-x: hidden;
   padding: 10px;
   margin-top: 10px;
+  margin-bottom: 10px;
   width: fit-content;
   min-width: 280px;
   overflow-y: auto;

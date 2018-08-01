@@ -54,6 +54,7 @@ class CardDetails extends Component {
                 Edit
               </span>
             </SubTitle>
+
             {!showEditTextarea && description ? (
               <p>{description}</p>
             ) : (

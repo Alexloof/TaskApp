@@ -14,7 +14,6 @@ export default class CardMembers extends Component {
     super(props)
 
     this.state = {
-      selectedUserId: '',
       showAddMemberBox: false,
       taskMembers: this.setInitTaskMembers(props.taskMembers)
     }
@@ -30,30 +29,27 @@ export default class CardMembers extends Component {
     if (!taskMembers.includes(memberId)) {
       this.setState({ taskMembers: [...taskMembers, memberId] })
     } else {
-      const newTaskMembers = taskMembers.map((member, index) => {
-        if (taskMembers[index] !== memberId) {
-          return member
-        }
-      })
+      const newTaskMembers = taskMembers.filter(
+        (member, index) => taskMembers[index] !== memberId
+      )
+
       this.setState({ taskMembers: newTaskMembers })
     }
   }
 
-  onAddUser = addUserToTask => {
-    console.log('add user')
-    if (this.state.selectedUserId) {
-      addUserToTask()
-    }
+  onAddUsers = addUsersToTask => {
+    addUsersToTask()
+    this.setState({ showAddMemberBox: false })
   }
 
   render() {
-    const { selectedUserId, showAddMemberBox, taskMembers } = this.state
+    const { showAddMemberBox, taskMembers } = this.state
     const { taskId, boardMembers } = this.props
 
     return (
       <Mutation
         mutation={ADD_USERS_TO_TASK}
-        variables={{ taskId, userId: selectedUserId }}
+        variables={{ taskId, userIds: taskMembers }}
       >
         {(addUsersToTask, { loading, error, data }) => (
           <Fragment>
@@ -86,7 +82,9 @@ export default class CardMembers extends Component {
                     )
                   })}
                 </MemberBox>
-                <Button>Save</Button>
+                <Button onClick={() => this.onAddUsers(addUsersToTask)}>
+                  Save
+                </Button>
               </Fragment>
             )}
           </Fragment>
