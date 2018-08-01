@@ -39,7 +39,7 @@ export const AddCardLink = styled.p`
 export const CardsWrapper = styled.div`
   overflow: auto;
   max-height: calc(100vh - 204px);
-  margin: 5px 0px;
+  margin: 10px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;

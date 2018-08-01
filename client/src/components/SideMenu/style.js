@@ -9,6 +9,7 @@ export const SideMenu = styled.aside`
   display: flex;
   flex-direction: column;
   padding: 30px;
+  padding-top: 20px;
   box-shadow: 2px 4px 10px 0px #0000003b;
   transition: 0.5s all ease;
   transform: ${({ active }) =>
@@ -17,7 +18,7 @@ export const SideMenu = styled.aside`
 export const Title = styled.p`
   font-size: 18px;
   border-bottom: 1px solid #0000001f;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   color: #464646;
   font-weight: 300;
 `

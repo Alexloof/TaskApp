@@ -9,7 +9,7 @@ export const Navbar = styled.nav`
   padding: 0 30px;
   letter-spacing: 1px;
   font-weight: bold;
-  box-shadow: 0px 1px 0px 0px #00000030;
+  box-shadow: 0px 1px 5px 0px #00000030;
   position: fixed;
   right: 0;
   left: 0;
