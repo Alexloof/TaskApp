@@ -1,16 +1,15 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
 import ADD_TASK_LIST from 'api/mutations/taskList/addTaskList'
 
-import { StyledForm } from './style'
+import { StyledForm, Title, SubTitle } from './style'
 
-import { Button, Icon, Input } from 'components'
+import { Button, Input } from 'components'
 
 class AddListForm extends Component {
   state = {
-    listName: '',
-    showForm: false
+    listName: ''
   }
 
   addNewList = (e, addTaskList) => {
@@ -18,8 +17,7 @@ class AddListForm extends Component {
     if (this.state.listName) {
       addTaskList()
       this.setState({
-        listName: '',
-        showForm: false
+        listName: ''
       })
     }
   }
@@ -30,33 +28,6 @@ class AddListForm extends Component {
     })
   }
 
-  toggleForm = () => {
-    this.setState(
-      {
-        showForm: !this.state.showForm
-      },
-      () => {
-        if (this.state.showForm) {
-          document.addEventListener('mousedown', this.handleClick, false)
-        } else {
-          document.removeEventListener('mousedown', this.handleClick, false)
-        }
-      }
-    )
-  }
-
-  handleClick = e => {
-    if (this.formNode && !this.formNode.contains(e.target)) {
-      this.handleClickOutside()
-    }
-  }
-
-  handleClickOutside = () => {
-    this.setState({
-      showForm: false
-    })
-  }
-
   render() {
     return (
       <Mutation
@@ -64,34 +35,21 @@ class AddListForm extends Component {
         variables={{ name: this.state.listName, boardId: this.props.boardId }}
       >
         {addTaskList => (
-          <Fragment>
-            {!this.state.showForm ? (
-              <Button onClick={this.toggleForm}>Add a new list...</Button>
-            ) : (
-              <StyledForm
-                onSubmit={e => this.addNewList(e, addTaskList)}
-                innerRef={node => (this.formNode = node)}
-              >
-                <Input
-                  placeholder="Add a new list..."
-                  onChange={this.onInputType}
-                  value={this.state.listName}
-                />
-                <Button
-                  type="submit"
-                  style={{ marginTop: '10px', marginRight: '10px' }}
-                >
-                  Save
-                </Button>
-                <Icon
-                  name="times"
-                  size="30px"
-                  style={{ cursor: 'pointer' }}
-                  onClick={this.toggleForm}
-                />
-              </StyledForm>
-            )}
-          </Fragment>
+          <StyledForm onSubmit={e => this.addNewList(e, addTaskList)}>
+            <Title>Add a new list</Title>
+            <SubTitle>Name</SubTitle>
+            <Input
+              placeholder="Give your list a name..."
+              onChange={this.onInputType}
+              value={this.state.listName}
+            />
+            <Button
+              type="submit"
+              style={{ marginTop: '10px', marginRight: '10px' }}
+            >
+              Save
+            </Button>
+          </StyledForm>
         )}
       </Mutation>
     )

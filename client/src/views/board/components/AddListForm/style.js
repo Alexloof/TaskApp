@@ -1,12 +1,19 @@
 import styled from 'styled-components'
 
 export const StyledForm = styled.form`
-  width: 280px;
-  min-width: 280px;
-  background: #d1dce8;
-  border-radius: 5px;
-  margin: 0 5px;
-  padding: 15px;
-  box-shadow: 0px 2px 8px 0px #00000030;
-  height: fit-content;
+  padding: 20px;
+  position: relative;
+  width: 400px;
+`
+
+export const Title = styled.h3`
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+`
+
+export const SubTitle = styled.h4`
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
 `
