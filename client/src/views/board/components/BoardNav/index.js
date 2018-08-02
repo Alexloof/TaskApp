@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 
 import AddListForm from '../AddListForm'
+import AddMembersForm from '../AddMembersForm'
 
+import { Avatar } from 'components'
 import { openModal } from 'components/Modal'
 
 import { Container, Title, BoardMembers, Link } from './style'
-import { Avatar } from 'components'
 
 class BoardNav extends Component {
   render() {
@@ -22,7 +23,9 @@ class BoardNav extends Component {
         <Link onClick={() => openModal(<AddListForm boardId={_id} />)}>
           Add list
         </Link>
-        <Link>Invite members</Link>
+        <Link onClick={() => openModal(<AddMembersForm boardId={_id} />)}>
+          Invite members
+        </Link>
       </Container>
     )
   }
