@@ -17,12 +17,15 @@ export default () =>
     let ids = []
     let dataIsArray = false
 
+    console.log('LÄNGD', objArray.length)
+
     if (Array.isArray(objArray[0].data)) {
       // NOT FINISHED
       dataIsArray = true
 
       // push an empty item if data is empty to keep the array length the same (dataloader)
       objArray.forEach(obj => {
+        console.log('OBJ', obj.data)
         if (!!obj.data.length) {
           obj.data.forEach(id => ids.push(id))
         } else {
@@ -32,6 +35,7 @@ export default () =>
     } else {
       ids = objArray.map(obj => obj.data)
     }
+    console.log('IDS', ids)
 
     let query = {}
     query[field] = { $in: ids }
@@ -56,6 +60,8 @@ export default () =>
       }
       return array
     })
+
+    console.log('OUTPUT LÄNGD', arrayObject.length)
 
     // cant return an empty result when using dataloaders (output need same length as input)
     if (dataIsArray && !!!arrayObject.length) return [arrayObject]

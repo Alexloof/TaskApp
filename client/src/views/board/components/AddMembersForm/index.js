@@ -3,9 +3,10 @@ import { Mutation } from 'react-apollo'
 
 import ADD_MEMBERS from 'api/mutations/board/addMembers'
 
-import { StyledForm, Title, SubTitle } from './style'
+import { StyledForm, Title, SubTitle, MembersEmail, Email } from './style'
 
-import { Button, Input } from 'components'
+import { Button, Input, Icon } from 'components'
+import { closeModal } from 'components/Modal'
 
 class AddMembersForm extends Component {
   state = {
@@ -28,6 +29,12 @@ class AddMembersForm extends Component {
     })
   }
 
+  onAddMembers = addMembers => {
+    console.log('add members', addMembers)
+    addMembers()
+    closeModal()
+  }
+
   render() {
     return (
       <Mutation
@@ -42,14 +49,24 @@ class AddMembersForm extends Component {
             <Title>Invite members</Title>
             <SubTitle>Email</SubTitle>
             <Input
-              placeholder="Write a members email..."
+              autoFocus
+              placeholder="Write an email..."
               onChange={this.onInputType}
               value={this.state.emailInput}
             />
+
+            <MembersEmail>
+              {this.state.emails.map((email, index) => (
+                <Email key={index}>
+                  &#8226; {email} <Icon name="times" />
+                </Email>
+              ))}
+            </MembersEmail>
+
             {!!this.state.emails.length && (
               <Button
                 type="button"
-                onClick={() => console.log('ADD MEMBERS')}
+                onClick={() => this.onAddMembers(addMembers)}
                 style={{ marginTop: '10px', marginRight: '10px' }}
               >
                 Submit

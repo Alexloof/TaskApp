@@ -14,5 +14,6 @@ export default /* GraphQL */ `
 
   extend type Mutation {
     addBoard(name: String!): Board!
+    addMembers(boardId: ID!, membersEmail: [String!]!): Board!
   }
 `
