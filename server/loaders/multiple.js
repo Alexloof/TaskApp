@@ -16,31 +16,27 @@ export default () =>
 
     let ids = []
     let dataIsArray = false
+    let dataLengthMapper = []
 
-    console.log('LÄNGD', objArray.length)
-
-    let exp = []
-
+    // if incomming data is an array we have to loop over it to get the ID
     if (Array.isArray(objArray[0].data)) {
-      // NOT FINISHED
       dataIsArray = true
 
-      // push an empty item if data is empty to keep the array length the same (dataloader)
       objArray.forEach((obj, index) => {
         if (!!obj.data.length) {
           obj.data.forEach(id => {
             ids.push(id)
           })
-          exp.push({ index, length: obj.data.length })
+          dataLengthMapper.push({ index, length: obj.data.length })
         } else {
+          // push an empty item if data is empty to keep the array length the same (dataloader)
           ids.push([])
-          exp.push({ index, length: 0 })
+          dataLengthMapper.push({ index, length: 0 })
         }
       })
     } else {
       ids = objArray.map(obj => obj.data)
     }
-    console.log('IDS', ids)
 
     let query = {}
     query[field] = { $in: ids }
@@ -53,37 +49,42 @@ export default () =>
 
     const resultById = _.keyBy(result, '_id')
 
-    let arrayObject = []
-    ids.forEach(id => {
+    // let arrayObject = []
+    const arrayObject = ids.map(id => {
+      let arr = []
       for (let key in resultById) {
         let obj = resultById[key]
 
         if (JSON.stringify(obj[field]) == JSON.stringify(id)) {
-          arrayObject.push(obj)
+          arr.push(obj)
         }
       }
+      return arr
     })
-    console.log('Exp', exp)
-    console.log('array', arrayObject)
 
     let currentLength = 0
-    exp.forEach(expItem => {
-      if (expItem.length > 1) {
+    dataLengthMapper.forEach(item => {
+      if (item.length > 1) {
         const copyArray = [...arrayObject]
-        console.log('copyArray', copyArray)
         const newItem = copyArray.slice(currentLength, 2)
-        console.log('SE HÄR', newItem)
+        const flattenItem = flatten(newItem)
+
         arrayObject.splice(currentLength, 2)
-        arrayObject.splice(currentLength, 0, newItem)
+        arrayObject.splice(currentLength, 0, flattenItem)
       }
-      currentLength = currentLength + expItem.length
+      currentLength = currentLength + item.length
     })
-    console.log('newArray', arrayObject)
-    console.log('crtLength', currentLength)
-    console.log('OUTPUT LÄNGD', arrayObject.length)
 
     // cant return an empty result when using dataloaders (output need same length as input)
     if (dataIsArray && !!!arrayObject.length) return [arrayObject]
 
     return arrayObject
   })
+
+function flatten(arr) {
+  return arr.reduce(function(flat, toFlatten) {
+    return flat.concat(
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten
+    )
+  }, [])
+}
