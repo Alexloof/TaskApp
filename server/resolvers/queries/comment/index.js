@@ -1,3 +1,9 @@
+import user from './user'
+import task from './task'
+
 export default {
-  Comment: {}
+  Comment: {
+    user,
+    task
+  }
 }
