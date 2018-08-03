@@ -17,7 +17,7 @@ export default () =>
     let ids = []
     let dataIsArray = false
     let dataLengthMapper = []
-
+    console.log('INPUT LÄNGD', objArray.length)
     // if incomming data is an array we have to loop over it to get the ID
     if (Array.isArray(objArray[0].data)) {
       dataIsArray = true
@@ -61,20 +61,34 @@ export default () =>
       }
       return arr
     })
-
+    console.log(arrayObject)
+    console.log(dataLengthMapper)
     let currentLength = 0
+    const copyArray = [...arrayObject]
     dataLengthMapper.forEach(item => {
       if (item.length > 1) {
-        const copyArray = [...arrayObject]
-        const newItem = copyArray.slice(currentLength, 2)
+        const instanceArray = [...copyArray]
+
+        const newItem = instanceArray.slice(
+          currentLength,
+          currentLength + item.length
+        )
         const flattenItem = flatten(newItem)
 
-        arrayObject.splice(currentLength, 2)
+        console.log('FLATTEN ITEM', flattenItem)
+        console.log('HUR?', arrayObject)
+        const spliceStart = currentLength === 0 ? 0 : currentLength - 1
+        const spliceEnd = currentLength + item.length - 1
+
+        arrayObject.splice(spliceStart, spliceEnd)
+        console.log('FÖRE', arrayObject)
         arrayObject.splice(currentLength, 0, flattenItem)
+        console.log('EFTER', arrayObject)
       }
       currentLength = currentLength + item.length
     })
-
+    console.log('result', arrayObject)
+    console.log('OUTPUT LÄNGD', arrayObject.length)
     // cant return an empty result when using dataloaders (output need same length as input)
     if (dataIsArray && !!!arrayObject.length) return [arrayObject]
 

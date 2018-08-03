@@ -6,6 +6,7 @@ import ADD_TASK_LIST from 'api/mutations/taskList/addTaskList'
 import { StyledForm, Title, SubTitle } from './style'
 
 import { Button, Input } from 'components'
+import { closeModal } from 'components/Modal'
 
 class AddListForm extends Component {
   state = {
@@ -16,9 +17,7 @@ class AddListForm extends Component {
     e.preventDefault()
     if (this.state.listName) {
       addTaskList()
-      this.setState({
-        listName: ''
-      })
+      closeModal()
     }
   }
 
