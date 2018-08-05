@@ -67,6 +67,7 @@ export default () =>
     console.log(arrayObject)
     console.log(dataLengthMapper)
     let currentLength = 0
+    let itemLargerThanOneCounter = 0
     const copyArray = [...arrayObject]
 
     dataLengthMapper.forEach(item => {
@@ -81,15 +82,26 @@ export default () =>
 
         console.log('FLATTEN ITEM', flattenItem)
         console.log('HUR?', arrayObject)
-        const indexToRemove = currentLength === 0 ? 0 : currentLength - 1
+        // const indexToRemove = currentLength === 0 ? 0 : currentLength - 1
+
+        // index changes everytime this code runs because we make many "indexes" to one.
+        const indexToRemove = currentLength - itemLargerThanOneCounter
         const itemsToRemove = item.length
+
+        console.log('currentLength', currentLength)
+        console.log('itemLargerThanOneCounter', itemLargerThanOneCounter)
+        console.log('indexToRemove', indexToRemove)
+        console.log('itemsToRemove', itemsToRemove)
 
         arrayObject.splice(indexToRemove, itemsToRemove)
         console.log('FÖRE', arrayObject)
         arrayObject.splice(currentLength, 0, flattenItem)
         console.log('EFTER', arrayObject)
+        currentLength = currentLength + item.length
+        itemLargerThanOneCounter = itemLargerThanOneCounter + 1
+      } else {
+        currentLength = currentLength + 1
       }
-      currentLength = currentLength + item.length
     })
     console.log('result', arrayObject)
     console.log('OUTPUT LÄNGD', arrayObject.length)
