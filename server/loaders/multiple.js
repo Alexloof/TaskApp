@@ -18,7 +18,10 @@ export default () =>
     let dataIsArray = false
     let dataLengthMapper = []
     console.log('INPUT LÄNGD', objArray.length)
-    // if incomming data is an array we have to loop over it to get the ID
+
+    // Some data items comes in as a an array to the dataloader.
+    // But we have to flatten them so we can batch all Id's to the query.
+    // Then we have to parse them again so the dataloader return the same length as it received
     if (Array.isArray(objArray[0].data)) {
       dataIsArray = true
 
@@ -65,6 +68,7 @@ export default () =>
     console.log(dataLengthMapper)
     let currentLength = 0
     const copyArray = [...arrayObject]
+
     dataLengthMapper.forEach(item => {
       if (item.length > 1) {
         const instanceArray = [...copyArray]
@@ -77,10 +81,10 @@ export default () =>
 
         console.log('FLATTEN ITEM', flattenItem)
         console.log('HUR?', arrayObject)
-        const spliceStart = currentLength === 0 ? 0 : currentLength - 1
-        const spliceEnd = currentLength + item.length - 1
+        const indexToRemove = currentLength === 0 ? 0 : currentLength - 1
+        const itemsToRemove = item.length
 
-        arrayObject.splice(spliceStart, spliceEnd)
+        arrayObject.splice(indexToRemove, itemsToRemove)
         console.log('FÖRE', arrayObject)
         arrayObject.splice(currentLength, 0, flattenItem)
         console.log('EFTER', arrayObject)
