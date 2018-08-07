@@ -7,6 +7,7 @@ export default gql`
       createdAt
       description
       title
+      order
     }
   }
 `

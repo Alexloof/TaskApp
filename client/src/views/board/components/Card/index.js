@@ -10,9 +10,9 @@ import CardDetails from '../CardDetails'
 
 class Card extends Component {
   render() {
-    const { id, index, title, members } = this.props
+    const { _id, index, title, members } = this.props
     return (
-      <Draggable draggableId={id} index={index}>
+      <Draggable draggableId={_id} index={index}>
         {(provided, snapshot) => (
           <CardContainer
             innerRef={provided.innerRef}

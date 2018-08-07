@@ -4,7 +4,7 @@ export const ListContainer = styled.div`
   width: 280px;
   background-image: ${({ isDraggingOver }) =>
     isDraggingOver
-      ? 'linear-gradient(166deg, red 10%, black 100%)'
+      ? 'linear-gradient(166deg,#fdceba 10%,#ffd6d2 100%)'
       : 'linear-gradient(166deg,#0bd0be 10%, #28e4d3 100%)'};
   border-radius: 5px;
   margin: 0 5px;

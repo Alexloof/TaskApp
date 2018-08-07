@@ -5,6 +5,7 @@ import { withApollo } from 'react-apollo'
 
 import GET_BOARD from 'api/queries/board/board'
 import REORDER_TASKLIST from 'api/mutations/taskList/reorderTaskList'
+import REORDER_TASK from 'api/mutations/task/reorderTask'
 
 import { ListsWrapper } from './style'
 
@@ -72,19 +73,18 @@ class Board extends Component {
       return
     }
 
+    // if the task does not move list (always happends for taskLists)
     if (source.droppableId === destination.droppableId) {
       if (source.droppableId === '12345') {
-        console.log('Körs här')
-        console.log(this.props.client)
-        console.log(source, destination)
-        const newLists = reorder(
-          this.state.lists,
-          source.index,
-          destination.index
-        )
-        this.setState({
-          lists: newLists
-        })
+        // OLD CODE
+        // const newLists = reorder(
+        //   this.state.lists,
+        //   source.index,
+        //   destination.index
+        // )
+        // this.setState({
+        //   lists: newLists
+        // })
 
         this.props.client.mutate({
           mutation: REORDER_TASKLIST,
@@ -95,29 +95,38 @@ class Board extends Component {
           }
         })
       } else {
-        const list = this.getList(source.droppableId)
+        console.log('Körs här')
+        console.log(source, destination)
 
-        const cards = reorder(list.cards, source.index, destination.index)
-
-        const state = { id: list.id, cards }
-
-        let newLists = []
-        let spot
-
-        this.state.lists.forEach((list, index) => {
-          if (list.id !== state.id) {
-            newLists.push(list)
-          } else {
-            spot = index
+        this.props.client.mutate({
+          mutation: REORDER_TASK,
+          variables: {
+            id: draggableId,
+            from: source.index,
+            to: destination.index,
+            fromList: source.droppableId,
+            toList: destination.droppableId
           }
         })
-
-        newLists.splice(spot, 0, state)
-
-        this.setState({
-          lists: [...newLists]
-        })
+        // const list = this.getList(source.droppableId)
+        // const cards = reorder(list.cards, source.index, destination.index)
+        // const state = { id: list.id, cards }
+        // let newLists = []
+        // let spot
+        // this.state.lists.forEach((list, index) => {
+        //   if (list.id !== state.id) {
+        //     newLists.push(list)
+        //   } else {
+        //     spot = index
+        //   }
+        // })
+        // newLists.splice(spot, 0, state)
+        // this.setState({
+        //   lists: [...newLists]
+        // })
       }
+
+      // if the task moves to a different list
     } else {
       const result = move(
         this.getList(source.droppableId).cards,
