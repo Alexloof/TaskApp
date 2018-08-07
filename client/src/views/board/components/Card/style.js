@@ -11,6 +11,9 @@ export const CardContainer = styled.div`
   font-size: 14px;
   transition: 0.3s box-shadow ease;
   width: 93%;
+  &:first-child {
+    margin-top: 5px;
+  }
   &&& {
     cursor: pointer;
   }

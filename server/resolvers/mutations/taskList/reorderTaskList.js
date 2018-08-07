@@ -50,7 +50,8 @@ export default async (parent, { id, from, to }, ctx) => {
         { _id: id },
         {
           order: to
-        }
+        },
+        { new: true }
       )
 
       return updatedTaskList

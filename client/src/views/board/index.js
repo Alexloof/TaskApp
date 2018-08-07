@@ -128,25 +128,35 @@ class Board extends Component {
 
       // if the task moves to a different list
     } else {
-      const result = move(
-        this.getList(source.droppableId).cards,
-        this.getList(destination.droppableId).cards,
-        source,
-        destination
-      )
-
-      let newLists = []
-      this.state.lists.forEach(list => {
-        if (result[list.id]) {
-          newLists.push({ id: list.id, cards: result[list.id] })
-        } else {
-          newLists.push(list)
+      this.props.client.mutate({
+        mutation: REORDER_TASK,
+        variables: {
+          id: draggableId,
+          from: source.index,
+          to: destination.index,
+          fromList: source.droppableId,
+          toList: destination.droppableId
         }
       })
+      // const result = move(
+      //   this.getList(source.droppableId).cards,
+      //   this.getList(destination.droppableId).cards,
+      //   source,
+      //   destination
+      // )
 
-      this.setState({
-        lists: newLists
-      })
+      // let newLists = []
+      // this.state.lists.forEach(list => {
+      //   if (result[list.id]) {
+      //     newLists.push({ id: list.id, cards: result[list.id] })
+      //   } else {
+      //     newLists.push(list)
+      //   }
+      // })
+
+      // this.setState({
+      //   lists: newLists
+      // })
     }
   }
 
