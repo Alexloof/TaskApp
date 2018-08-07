@@ -78,7 +78,7 @@ class CardDetails extends Component {
             )}
 
             <SubTitle>Comments</SubTitle>
-            <CardComments comments={comments} />
+            <CardComments comments={comments} taskId={_id} />
           </Container>
         )}
       </Mutation>

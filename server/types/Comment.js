@@ -8,6 +8,6 @@ export default /* GraphQL */ `
   }
 
   extend type Mutation {
-    addComment(taskId: ID!, text: String): Comment!
+    addComment(taskId: ID!, text: String!): Comment!
   }
 `

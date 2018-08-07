@@ -3,6 +3,17 @@ import styled from 'styled-components'
 export const CommentsList = styled.ul`
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: 245px;
+  ::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #9a9a9a;
+    outline: 1px solid slategrey;
+    border-radius: 5px;
+  }
 `
 
 export const Comment = styled.li`
@@ -14,6 +25,7 @@ export const Comment = styled.li`
   flex-wrap: wrap;
   align-items: center;
   width: fit-content;
+  min-height: fit-content;
   align-self: ${({ fromCurrentUser }) =>
     fromCurrentUser ? 'flex-end' : 'auto'};
   justify-content: ${({ fromCurrentUser }) =>
