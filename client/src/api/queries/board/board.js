@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  query userBoard($id: ID!) {
-    userBoard(id: $id) {
+  query board($id: ID!) {
+    board(id: $id) {
       _id
       createdAt
       name

@@ -13,6 +13,6 @@ export default /* GraphQL */ `
 
   extend type Query {
     allUsers: [User!]
-    currentUser: User!
+    user: User!
   }
 `

@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  query userBoards {
-    userBoards {
+  query boards {
+    boards {
       _id
       createdAt
       name
