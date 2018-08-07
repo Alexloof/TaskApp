@@ -4,6 +4,7 @@ import { Mutation } from 'react-apollo'
 import ADD_DESC_TO_TASK from 'api/mutations/task/addDescToTask'
 
 import CardMembers from '../CardMembers'
+import CardComments from '../CardComments'
 
 import { Container, Title, SubTitle } from './style'
 
@@ -27,14 +28,21 @@ class CardDetails extends Component {
   }
 
   render() {
-    const { title, _id, description, members, boardMembers } = this.props
+    const {
+      title,
+      _id,
+      description,
+      members,
+      boardMembers,
+      comments
+    } = this.props
     const { taskDesc, showEditTextarea } = this.state
     return (
       <Mutation
         mutation={ADD_DESC_TO_TASK}
         variables={{ taskId: _id, description: taskDesc }}
       >
-        {(addDescToTask, { loading, error, data }) => (
+        {addDescToTask => (
           <Container>
             <Title>{title}</Title>
             <SubTitle>Members</SubTitle>
@@ -70,6 +78,7 @@ class CardDetails extends Component {
             )}
 
             <SubTitle>Comments</SubTitle>
+            <CardComments comments={comments} />
           </Container>
         )}
       </Mutation>

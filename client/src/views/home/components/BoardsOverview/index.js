@@ -10,7 +10,7 @@ import {
   CreateBoardLink
 } from './style'
 
-import { openModal, closeModal } from '../../../../components/Modal'
+import { openModal, closeModal } from 'components/Modal'
 
 import AddBoardForm from '../AddBoardForm'
 

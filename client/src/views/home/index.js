@@ -2,12 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Query } from 'react-apollo'
 
-import USER_BOARDS from '../../api/queries/board/userBoards'
+import USER_BOARDS from 'api/queries/board/userBoards'
 
 import Board from '../board'
-import SideMenu from '../../components/SideMenu'
+import SideMenu from 'components/SideMenu'
 import BoardsOverview from './components/BoardsOverview'
-import withAuth from '../../lib/withAuth'
+import withAuth from 'lib/withAuth'
 
 import { Container } from './style'
 

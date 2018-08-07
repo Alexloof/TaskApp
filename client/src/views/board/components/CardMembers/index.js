@@ -49,11 +49,12 @@ export default class CardMembers extends Component {
         mutation={ADD_USERS_TO_TASK}
         variables={{ taskId, userIds: taskMembers }}
       >
-        {(addUsersToTask, { loading, error, data }) => (
+        {addUsersToTask => (
           <Fragment>
             <MembersGroup>
-              <Avatar src="https://gfx.aftonbladet-cdn.se/image-c/16045605/500/normal/202f3fbc7c3ca/bard034.jpg" />
-              <Avatar src="https://gfx.aftonbladet-cdn.se/image-c/16045605/500/normal/202f3fbc7c3ca/bard034.jpg" />
+              {this.props.taskMembers.map(member => (
+                <Avatar key={member._id} src={member.avatar} />
+              ))}
               <Icon
                 size="17px"
                 name="plus"

@@ -9,6 +9,7 @@ export default styled.input`
   border: 0;
   height: 40px;
   &:focus {
-    outline-color: #ff6a2e;
+    outline-style: initial;
+    border: 1px solid #ff6a2e;
   }
 `

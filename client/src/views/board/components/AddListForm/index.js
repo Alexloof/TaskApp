@@ -41,6 +41,7 @@ class AddListForm extends Component {
               placeholder="Give your list a name..."
               onChange={this.onInputType}
               value={this.state.listName}
+              autoFocus
             />
             <Button
               type="submit"

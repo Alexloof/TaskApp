@@ -10,6 +10,7 @@ export default styled.textarea`
   resize: none;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.37);
   &:focus {
-    outline-color: #ff6a2e;
+    outline-style: initial;
+    border: 1px solid #ff6a2e;
   }
 `

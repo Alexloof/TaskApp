@@ -9,6 +9,7 @@ export default gql`
       members {
         _id
         name
+        avatar
       }
       taskLists {
         _id
@@ -22,10 +23,17 @@ export default gql`
           members {
             _id
             name
+            avatar
           }
           comments {
             _id
             text
+            createdAt
+            user {
+              _id
+              name
+              avatar
+            }
           }
         }
       }

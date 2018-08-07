@@ -8,8 +8,12 @@ import REORDER_TASKLIST from 'api/mutations/taskList/reorderTaskList'
 
 import { ListsWrapper } from './style'
 
+import { Button } from 'components'
+import { openModal } from 'components/Modal'
+
 import CardList from './components/CardList'
 import BoardNav from './components/BoardNav'
+import AddListForm from './components/AddListForm'
 
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -163,6 +167,17 @@ class Board extends Component {
                               cards={list.cards}
                             />
                           ))} */}
+                          {!data.userBoard.taskLists.length && (
+                            <Button
+                              onClick={() =>
+                                openModal(
+                                  <AddListForm boardId={data.userBoard._id} />
+                                )
+                              }
+                            >
+                              Add you first list for tasks
+                            </Button>
+                          )}
                           {data.userBoard.taskLists.map(list => (
                             <CardList
                               key={list._id}

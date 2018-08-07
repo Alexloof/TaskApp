@@ -38,6 +38,7 @@ class AddCardForm extends Component {
               value={cardTitle}
               onChange={e => this.setState({ cardTitle: e.target.value })}
               placeholder="Describe the card..."
+              autoFocus
             />
             <Button type="submit" style={{ marginTop: '10px' }}>
               Add Card

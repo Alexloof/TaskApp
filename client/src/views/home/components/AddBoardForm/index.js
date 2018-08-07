@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_BOARD from '../../../../api/mutations/board/addBoard'
+import ADD_BOARD from 'api/mutations/board/addBoard'
 
 import { Container } from './style'
 
-import Input from '../../../../components/Input'
-import Button from '../../../../components/Button'
+import { Input, Button } from 'components'
 
 class AddBoardForm extends Component {
   state = {
@@ -33,6 +32,7 @@ class AddBoardForm extends Component {
               value={name}
               onChange={e => this.setState({ name: e.target.value })}
               placeholder="Give your board a name..."
+              autoFocus
             />
             <Button onClick={() => this.onAddBoard(addBoard)}>Save</Button>
           </Container>
