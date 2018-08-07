@@ -22,17 +22,20 @@ class AddMembersForm extends Component {
 
   addInputToList = e => {
     e.preventDefault()
-    const newEmails = [...this.state.emails, this.state.emailInput]
-    this.setState({
-      emails: newEmails,
-      emailInput: ''
-    })
+    if (this.state.emailInput) {
+      const newEmails = [...this.state.emails, this.state.emailInput]
+      this.setState({
+        emails: newEmails,
+        emailInput: ''
+      })
+    }
   }
 
   onAddMembers = addMembers => {
-    console.log('add members', addMembers)
-    addMembers()
-    closeModal()
+    if (!!this.state.emails.length) {
+      addMembers()
+      closeModal()
+    }
   }
 
   render() {

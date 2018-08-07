@@ -7,7 +7,8 @@ const customStyles = {
     top: '13%',
     left: 'auto',
     right: 'auto',
-    bottom: 'auto'
+    bottom: 'auto',
+    maxHeight: '80vh'
   },
   overlay: {
     background: '#00000082',

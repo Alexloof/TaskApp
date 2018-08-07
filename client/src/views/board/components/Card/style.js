@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Avatar } from 'components'
+
 export const CardContainer = styled.div`
   background: ${({ isDragging }) => (isDragging ? '#e8e8e8' : 'white')};
   padding: 10px;
@@ -22,4 +24,22 @@ export const LowerSection = styled.div`
   flex-direction: row;
   margin-top: 5px;
   align-items: center;
+`
+
+export const MembersGroup = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`
+
+export const Member = styled(Avatar)`
+  border: 2px solid white;
+  width: 27px;
+  height: 27px;
+  transform: ${({ index, arrayLength }) => {
+    if (index === 0) {
+      return 'none'
+    } else {
+      return `translateX(${12 * index}px)`
+    }
+  }};
 `

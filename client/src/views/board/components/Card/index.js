@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 
-import { CardContainer, LowerSection } from './style'
+import { CardContainer, LowerSection, MembersGroup, Member } from './style'
 
 import { Icon, Avatar } from 'components'
 import { openModal } from 'components/Modal'
@@ -30,9 +30,16 @@ class Card extends Component {
                 style={{ marginRight: '10px' }}
               />
               <Icon size="17px" name="comments" style={{ flex: 1 }} />
-              {members.map(member => (
-                <Avatar key={member._id} src={member.avatar} />
-              ))}
+              <MembersGroup>
+                {members.map((member, index) => (
+                  <Member
+                    arrayLength={members.length}
+                    index={index}
+                    key={member._id}
+                    src={member.avatar}
+                  />
+                ))}
+              </MembersGroup>
             </LowerSection>
           </CardContainer>
         )}

@@ -5,6 +5,7 @@ export const CommentsList = styled.ul`
   flex-direction: column;
   overflow-y: auto;
   max-height: 245px;
+  margin-bottom: 15px;
   ::-webkit-scrollbar {
     width: 0.5em;
   }
@@ -26,15 +27,14 @@ export const Comment = styled.li`
   align-items: center;
   width: fit-content;
   min-height: fit-content;
+  margin-right: ${({ fromCurrentUser }) => (fromCurrentUser ? '0px' : '10px')};
+  margin-left: ${({ fromCurrentUser }) => (fromCurrentUser ? '10px' : '0px')};
   align-self: ${({ fromCurrentUser }) =>
     fromCurrentUser ? 'flex-end' : 'auto'};
   justify-content: ${({ fromCurrentUser }) =>
     fromCurrentUser ? 'flex-end' : 'auto'};
   &:first-child {
     margin-top: 0px;
-  }
-  &:last-child {
-    margin-bottom: 20px;
   }
 `
 
