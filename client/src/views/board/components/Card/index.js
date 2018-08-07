@@ -3,7 +3,7 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import { CardContainer, LowerSection, MembersGroup, Member } from './style'
 
-import { Icon, Avatar } from 'components'
+import { Icon } from 'components'
 import { openModal } from 'components/Modal'
 
 import CardDetails from '../CardDetails'

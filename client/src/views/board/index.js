@@ -3,7 +3,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { Query } from 'react-apollo'
 import { withApollo } from 'react-apollo'
 
-import USER_BOARD from 'api/queries/board/userBoard'
+import GET_BOARD from 'api/queries/board/board'
 import REORDER_TASKLIST from 'api/mutations/taskList/reorderTaskList'
 
 import { ListsWrapper } from './style'
@@ -143,7 +143,7 @@ class Board extends Component {
 
   render() {
     return (
-      <Query query={USER_BOARD} variables={{ id: this.props.match.params.id }}>
+      <Query query={GET_BOARD} variables={{ id: this.props.match.params.id }}>
         {({ loading, error, data }) => {
           return (
             <Fragment>
@@ -151,7 +151,7 @@ class Board extends Component {
               {!loading &&
                 !error && (
                   <DragDropContext onDragEnd={this.onDragEnd}>
-                    <BoardNav board={data.userBoard} />
+                    <BoardNav board={data.board} />
                     <Droppable
                       droppableId={'12345'}
                       direction="horizontal"
@@ -167,24 +167,24 @@ class Board extends Component {
                               cards={list.cards}
                             />
                           ))} */}
-                          {!data.userBoard.taskLists.length && (
+                          {!data.board.taskLists.length && (
                             <Button
                               onClick={() =>
                                 openModal(
-                                  <AddListForm boardId={data.userBoard._id} />
+                                  <AddListForm boardId={data.board._id} />
                                 )
                               }
                             >
                               Add you first list for tasks
                             </Button>
                           )}
-                          {data.userBoard.taskLists.map(list => (
+                          {data.board.taskLists.map(list => (
                             <CardList
                               key={list._id}
                               index={list.order}
                               _id={list._id}
                               cards={list.tasks}
-                              boardMembers={data.userBoard.members}
+                              boardMembers={data.board.members}
                               name={list.name}
                             />
                           ))}

@@ -2,10 +2,11 @@ import React, { Component, Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Query } from 'react-apollo'
 
-import USER_BOARDS from 'api/queries/board/userBoards'
+import GET_USER from 'api/queries/user/user'
 
 import Board from '../board'
 import SideMenu from 'components/SideMenu'
+import Navbar from 'components/Navbar'
 import BoardsOverview from './components/BoardsOverview'
 import withAuth from 'lib/withAuth'
 
@@ -24,23 +25,24 @@ class Home extends Component {
 
   render() {
     return (
-      <Query query={USER_BOARDS}>
+      <Query query={GET_USER}>
         {({ loading, error, data }) => {
           console.log(data)
 
           return (
             <Fragment>
+              <Navbar user={data.user || {}} />
               <SideMenu
                 active={this.state.activeMenu}
                 toggleSideMenu={this.toggleSideMenu}
-                boards={data.userBoards || []}
+                boards={(data.user && data.user.boards) || []}
               />
               <Container activeMenu={this.state.activeMenu}>
                 {error && <h1>Something happend, try refresh the page...</h1>}
                 {!loading &&
                   !error &&
                   (this.props.match.isExact ? (
-                    <BoardsOverview boards={data.userBoards} />
+                    <BoardsOverview boards={data.user.boards} />
                   ) : (
                     <Switch>
                       <Route path="/app/boards/:id" exact component={Board} />

@@ -7,14 +7,12 @@ import {
 } from 'react-router-dom'
 
 import Modal from './components/Modal'
-import Navbar from './components/Navbar'
 import Home from './views/home'
 import Login from './views/login'
 
 export default () => (
   <Router>
     <div>
-      <Navbar />
       <Switch>
         <Route path="/" exact component={ROOT} />
         <Route path="/app" component={Home} />
