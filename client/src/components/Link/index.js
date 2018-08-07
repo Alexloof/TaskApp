@@ -11,4 +11,7 @@ export default styled(Link)`
   &:hover {
     color: #fffdb1;
   }
+  &:focus {
+    outline-style: initial;
+  }
 `

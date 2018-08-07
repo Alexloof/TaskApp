@@ -14,4 +14,7 @@ export default styled(NavLink)`
   &:hover {
     color: #fffdb1;
   }
+  &:focus {
+    outline-style: initial;
+  }
 `
