@@ -10,6 +10,6 @@ export default styled.input`
   height: 40px;
   &:focus {
     outline-style: initial;
-    border: 1px solid #ff6a2e;
+    box-shadow: 0 0px 2px 1px rgba(255, 127, 36, 0.46);
   }
 `

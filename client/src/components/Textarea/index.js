@@ -11,6 +11,7 @@ export default styled.textarea`
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.37);
   &:focus {
     outline-style: initial;
-    border: 1px solid #ff6a2e;
+    box-shadow: 0 0px 2px 1px rgba(255, 127, 36, 0.46);
+    border: 0;
   }
 `

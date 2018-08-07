@@ -16,7 +16,10 @@ class CardComments extends Component {
         <CommentsList>
           {this.props.comments.map(comment => (
             <Comment key={comment._id}>
-              <Avatar src={comment.user.avatar} />
+              <Comment.Avatar>
+                <Avatar src={comment.user.avatar} />
+              </Comment.Avatar>
+
               <Comment.UserName>{comment.user.name}</Comment.UserName>
               <Comment.Time>
                 {moment(new Date(comment.createdAt)).fromNow()}
