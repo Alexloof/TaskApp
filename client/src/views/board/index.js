@@ -166,7 +166,7 @@ class Board extends Component {
         {({ loading, error, data }) => {
           return (
             <Fragment>
-              {error && <h1>Could not find the board..., ${error}</h1>}
+              {error && <h1>Could not find the board..., {error}</h1>}
               {!loading &&
                 !error && (
                   <DragDropContext onDragEnd={this.onDragEnd}>
