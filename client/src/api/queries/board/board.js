@@ -25,16 +25,6 @@ export default gql`
             name
             avatar
           }
-          comments {
-            _id
-            text
-            createdAt
-            user {
-              _id
-              name
-              avatar
-            }
-          }
         }
       }
     }

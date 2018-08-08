@@ -16,54 +16,54 @@ import CardList from './components/CardList'
 import BoardNav from './components/BoardNav'
 import AddListForm from './components/AddListForm'
 
-const getItems = (count, offset = 0) =>
-  Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k + offset + 1000 * Math.random()}`,
-    content: `Vi ska fixa så att hela helvetet inte brakar lös. Samling imorgon kl 20.00. ÖKA!`
-  }))
+// const getItems = (count, offset = 0) =>
+//   Array.from({ length: count }, (v, k) => k).map(k => ({
+//     id: `item-${k + offset + 1000 * Math.random()}`,
+//     content: `Vi ska fixa så att hela helvetet inte brakar lös. Samling imorgon kl 20.00. ÖKA!`
+//   }))
 
-const getLists = count =>
-  Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `list-${k}`,
-    cards: getItems(10)
-  }))
+// const getLists = count =>
+//   Array.from({ length: count }, (v, k) => k).map(k => ({
+//     id: `list-${k}`,
+//     cards: getItems(10)
+//   }))
 
-const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list)
-  const [removed] = result.splice(startIndex, 1)
-  result.splice(endIndex, 0, removed)
+// const reorder = (list, startIndex, endIndex) => {
+//   const result = Array.from(list)
+//   const [removed] = result.splice(startIndex, 1)
+//   result.splice(endIndex, 0, removed)
 
-  return result
-}
+//   return result
+// }
 
-const move = (source, destination, droppableSource, droppableDestination) => {
-  const sourceClone = Array.from(source)
-  const destClone = Array.from(destination)
-  const [removed] = sourceClone.splice(droppableSource.index, 1)
+// const move = (source, destination, droppableSource, droppableDestination) => {
+//   const sourceClone = Array.from(source)
+//   const destClone = Array.from(destination)
+//   const [removed] = sourceClone.splice(droppableSource.index, 1)
 
-  destClone.splice(droppableDestination.index, 0, removed)
+//   destClone.splice(droppableDestination.index, 0, removed)
 
-  const result = {}
-  result[droppableSource.droppableId] = sourceClone
-  result[droppableDestination.droppableId] = destClone
+//   const result = {}
+//   result[droppableSource.droppableId] = sourceClone
+//   result[droppableDestination.droppableId] = destClone
 
-  return result
-}
+//   return result
+// }
 
 class Board extends Component {
-  state = {
-    lists: getLists(4)
-  }
+  // state = {
+  //   lists: getLists(4)
+  // }
 
-  getList = id => {
-    let newList
-    this.state.lists.forEach(list => {
-      if (list.id === id) {
-        newList = list
-      }
-    })
-    return newList
-  }
+  // getList = id => {
+  //   let newList
+  //   this.state.lists.forEach(list => {
+  //     if (list.id === id) {
+  //       newList = list
+  //     }
+  //   })
+  //   return newList
+  // }
 
   onDragEnd = result => {
     const { source, destination, draggableId } = result
@@ -178,14 +178,6 @@ class Board extends Component {
                     >
                       {(provided, snapshot) => (
                         <ListsWrapper innerRef={provided.innerRef}>
-                          {/* {this.state.lists.map((list, index) => (
-                            <CardList
-                              key={list.id}
-                              index={index}
-                              id={list.id}
-                              cards={list.cards}
-                            />
-                          ))} */}
                           {!data.board.taskLists.length && (
                             <Button
                               onClick={() =>

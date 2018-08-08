@@ -28,15 +28,9 @@ class CardDetails extends Component {
   }
 
   render() {
-    const {
-      title,
-      _id,
-      description,
-      members,
-      boardMembers,
-      comments
-    } = this.props
+    const { title, _id, description, members, boardMembers } = this.props
     const { taskDesc, showEditTextarea } = this.state
+
     return (
       <Mutation
         mutation={ADD_DESC_TO_TASK}
@@ -78,7 +72,7 @@ class CardDetails extends Component {
             )}
 
             <SubTitle>Comments</SubTitle>
-            <CardComments comments={comments} taskId={_id} />
+            <CardComments taskId={_id} />
           </Container>
         )}
       </Mutation>
