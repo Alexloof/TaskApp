@@ -11,7 +11,7 @@ export const SideMenu = styled.aside`
   padding: 30px;
   padding-top: 20px;
   box-shadow: 2px 4px 10px 0px #0000003b;
-  transition: 0.5s all ease;
+  transition: 0.5s all cubic-bezier(0.36, -0.01, 0.4, 1.35);
   transform: ${({ active }) =>
     active ? 'translateX(0px)' : 'translateX(-230px)'};
 `

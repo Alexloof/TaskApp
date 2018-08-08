@@ -8,5 +8,5 @@ export const Container = styled.div`
   width: ${({ activeMenu }) =>
     activeMenu ? 'calc(100vw - 300px)' : 'calc(100vw - 80px)'};
   overflow: auto;
-  transition: 0.5s all ease;
+  transition: 0.5s all cubic-bezier(0.36, -0.01, 0.4, 1.35);
 `

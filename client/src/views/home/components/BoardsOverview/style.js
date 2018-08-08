@@ -18,16 +18,17 @@ export const FlexGrid = styled.div`
 `
 
 export const BoardCard = styled.div`
-  height: 120px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 10px;
   width: 200px;
-  box-shadow: 0px 2px 6px #0000004f;
+
+  box-shadow: 0px 8px 20px 0px #00000032;
   cursor: pointer;
   background-image: linear-gradient(164deg, #81fbb8 10%, #20a39e33 100%);
-  border-radius: 12px;
+  border-radius: 50%;
   background-image: ${props =>
     `linear-gradient(164deg, ${props.color} 20%, ${props.color}33 100%)`};
 `
