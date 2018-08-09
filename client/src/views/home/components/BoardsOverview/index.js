@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Trail, animated } from 'react-spring'
 
 import {
   Container,
@@ -29,19 +30,31 @@ class BoardsOverview extends Component {
           Create new Board
         </CreateBoardLink>
         <FlexGrid>
-          {this.props.boards.map(board => {
-            return (
-              <BoardCard
-                key={board._id}
-                onClick={() =>
-                  this.props.history.push(`/app/boards/${board._id}`)
-                }
-                color={COLORS[Math.floor(Math.random() * COLORS.length)]}
+          <Trail
+            native
+            from={{ y: 70, opacity: 0 }}
+            to={{ y: 0, opacity: 1 }}
+            keys={this.props.boards.map(board => board._id)}
+          >
+            {this.props.boards.map(board => ({ y, opacity }) => (
+              <animated.div
+                style={{
+                  opacity,
+                  transform: y.interpolate(y => `translate3d(0,${y}%,0)`)
+                }}
               >
-                {board.name}
-              </BoardCard>
-            )
-          })}
+                <BoardCard
+                  key={board._id}
+                  onClick={() =>
+                    this.props.history.push(`/app/boards/${board._id}`)
+                  }
+                  color={COLORS[Math.floor(Math.random() * COLORS.length)]}
+                >
+                  {board.name}
+                </BoardCard>
+              </animated.div>
+            ))}
+          </Trail>
         </FlexGrid>
       </Container>
     )

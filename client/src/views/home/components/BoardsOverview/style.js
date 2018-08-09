@@ -23,7 +23,7 @@ export const BoardCard = styled.div`
   align-items: center;
   justify-content: center;
   margin: 10px;
-  width: 200px;
+  width: 150px;
 
   box-shadow: 0px 8px 20px 0px #00000032;
   cursor: pointer;
