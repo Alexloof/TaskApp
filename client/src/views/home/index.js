@@ -14,13 +14,18 @@ import { Container } from './style'
 
 class Home extends Component {
   state = {
-    activeMenu: true
+    activeMenu: JSON.parse(localStorage.getItem('activeMenu'))
   }
 
   toggleSideMenu = () => {
-    this.setState({
-      activeMenu: !this.state.activeMenu
-    })
+    this.setState(
+      {
+        activeMenu: !this.state.activeMenu
+      },
+      () => {
+        localStorage.setItem('activeMenu', this.state.activeMenu)
+      }
+    )
   }
 
   render() {
