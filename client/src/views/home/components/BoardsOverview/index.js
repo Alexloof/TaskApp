@@ -32,15 +32,16 @@ class BoardsOverview extends Component {
         <FlexGrid>
           <Trail
             native
-            from={{ y: 70, opacity: 0 }}
+            from={{ y: 150, opacity: 0 }}
             to={{ y: 0, opacity: 1 }}
             keys={this.props.boards.map((board, i) => i)}
           >
-            {this.props.boards.map(board => ({ y, opacity }) => (
+            {this.props.boards.map((board, i) => ({ y, opacity }) => (
+              // react spring bug? solved with a cond. in style tag
               <animated.div
                 style={{
                   opacity,
-                  transform: y.interpolate(y => `translate3d(0,${y}%,0)`)
+                  transform: y.interpolate(y => `translate3d(0,${y}px,0)`)
                 }}
               >
                 <BoardCard
