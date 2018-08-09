@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { Query } from 'react-apollo'
 import { withApollo } from 'react-apollo'
+import { Trail, animated } from 'react-spring'
 
 import GET_BOARD from 'api/queries/board/board'
 import REORDER_TASKLIST from 'api/mutations/taskList/reorderTaskList'
@@ -26,30 +27,16 @@ class Board extends Component {
     }
 
     // if the task does not move list (always happends for taskLists)
-    if (source.droppableId === destination.droppableId) {
-      if (source.droppableId === '12345') {
-        this.props.client.mutate({
-          mutation: REORDER_TASKLIST,
-          variables: {
-            id: draggableId,
-            from: source.index,
-            to: destination.index
-          }
-        })
-      } else {
-        this.props.client.mutate({
-          mutation: REORDER_TASK,
-          variables: {
-            id: draggableId,
-            from: source.index,
-            to: destination.index,
-            fromList: source.droppableId,
-            toList: destination.droppableId
-          }
-        })
-      }
 
-      // if the task moves to a different list
+    if (source.droppableId === '12345') {
+      this.props.client.mutate({
+        mutation: REORDER_TASKLIST,
+        variables: {
+          id: draggableId,
+          from: source.index,
+          to: destination.index
+        }
+      })
     } else {
       this.props.client.mutate({
         mutation: REORDER_TASK,
@@ -93,16 +80,25 @@ class Board extends Component {
                               Add you first list for tasks
                             </Button>
                           )}
-                          {data.board.taskLists.map(list => (
-                            <CardList
-                              key={list._id}
-                              index={list.order}
-                              _id={list._id}
-                              cards={list.tasks}
-                              boardMembers={data.board.members}
-                              name={list.name}
-                            />
-                          ))}
+                          <Trail
+                            native
+                            from={{ opacity: 0 }}
+                            to={{ opacity: 1.2 }}
+                            keys={data.board.taskLists.map(list => list._id)}
+                          >
+                            {data.board.taskLists.map(list => ({ opacity }) => (
+                              <animated.div style={{ opacity }}>
+                                <CardList
+                                  key={list._id}
+                                  index={list.order}
+                                  _id={list._id}
+                                  cards={list.tasks}
+                                  boardMembers={data.board.members}
+                                  name={list.name}
+                                />
+                              </animated.div>
+                            ))}
+                          </Trail>
                           {provided.placeholder}
                         </ListsWrapper>
                       )}
