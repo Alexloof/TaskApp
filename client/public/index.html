@@ -12,14 +12,29 @@
     integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
   <title>TaskApp - Plan your life</title>
+
+  <script>
+    if (window.location.pathname === "/login") {
+
+      var script = document.createElement("script");
+      var script2 = document.createElement("script");
+      script.setAttribute("src", "scripts/three.r92.min.js")
+      script2.setAttribute("src", "scripts/vanta.dots.min.js")
+      document.getElementsByTagName("head")[0].appendChild(script);
+      document.getElementsByTagName("head")[0].appendChild(script2);
+    }
+
+  </script>
+
 </head>
 
-<body>
+<body id="body">
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <div id="root"></div>
+  <div id="root">
 
+  </div>
 </body>
 
 </html>

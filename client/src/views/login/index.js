@@ -6,10 +6,36 @@ import {
   SubTitle,
   FacebookBtn,
   GoogleBtn,
-  ButtonGroup
+  ButtonGroup,
+  Logo
 } from './style'
 
 class Login extends Component {
+  state = {
+    vantaActive: false
+  }
+  componentDidMount() {
+    setInterval(() => {
+      if (window.VANTA && this.state.vantaActive === false) {
+        this.activateVanta()
+      }
+    }, 500)
+  }
+
+  activateVanta = () => {
+    this.setState({
+      vantaActive: true
+    })
+
+    window.VANTA.DOTS({
+      el: '#body',
+      color: 0x0bd0be,
+      backgroundColor: 0xffffff,
+      size: 2.8,
+      spacing: 41.0
+    })
+  }
+
   googleLogin = () => {
     console.log('login google')
     window.location.href = 'http://localhost:4000/auth/google'
@@ -17,13 +43,12 @@ class Login extends Component {
 
   facebookLogin = () => {
     console.log('login facebook')
-    localStorage.setItem('token', 'adadadad')
-    this.props.history.push('/')
   }
 
   render() {
     return (
       <Container>
+        <Logo href="/">TaskApp</Logo>
         <Title>Sign in to get started</Title>
         <SubTitle>
           TaskApp is a place where you can plan your day, week or month. Or you
@@ -35,13 +60,15 @@ class Login extends Component {
             <i
               style={{ color: 'white', marginRight: '15px' }}
               className="fab fa-facebook-f"
-            />Login
+            />
+            Login
           </FacebookBtn>
           <GoogleBtn onClick={this.googleLogin}>
             <i
               style={{ color: 'white', marginRight: '15px' }}
               className="fab fa-google"
-            />Login
+            />
+            Login
           </GoogleBtn>
         </ButtonGroup>
       </Container>

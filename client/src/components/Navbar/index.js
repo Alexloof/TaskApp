@@ -8,11 +8,13 @@ import { Avatar } from 'components'
 
 class Nav extends Component {
   logout = () => {
-    const { client, history } = this.props
+    const { client } = this.props
 
     client.resetStore().then(() => {
       localStorage.removeItem('token')
-      history.push('/login')
+
+      // hard refresh to trigger "VANTA script"
+      window.location.href = 'http://localhost:3000/login'
     })
   }
   render() {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -12,7 +12,7 @@ import Login from './views/login'
 
 export default () => (
   <Router>
-    <div>
+    <Fragment>
       <Switch>
         <Route path="/" exact component={ROOT} />
         <Route path="/app" component={Home} />
@@ -21,7 +21,7 @@ export default () => (
         <Route component={NoMatch} />
       </Switch>
       <Modal />
-    </div>
+    </Fragment>
   </Router>
 )
 

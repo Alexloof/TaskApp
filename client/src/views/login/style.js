@@ -7,8 +7,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 50px auto;
-  padding-top: 150px;
+  margin: 0 auto;
+  padding-top: 15%;
 `
 
 export const Title = styled.h1`
@@ -48,4 +48,15 @@ export const GoogleBtn = styled(Button)`
   &:hover {
     background: rgb(249, 133, 124);
   }
+`
+
+export const Logo = styled.a`
+  font-size: 35px;
+  letter-spacing: -1.5px;
+  text-decoration: none;
+  color: #ff6a2e;
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 25px;
 `

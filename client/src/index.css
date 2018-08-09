@@ -5,3 +5,9 @@
   box-sizing: border-box;
   color: #525252;
 }
+
+body,
+#root {
+  min-height: 100vh;
+  min-width: 100vw;
+}
