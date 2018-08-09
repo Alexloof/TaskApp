@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_TASK_LIST from 'api/mutations/taskList/addTaskList'
+import ADD_TASK_LIST, {
+  addTaskListOptions
+} from 'api/mutations/taskList/addTaskList'
 
 import { StyledForm, Title, SubTitle } from './style'
 
@@ -16,7 +18,12 @@ class AddListForm extends Component {
   addNewList = (e, addTaskList) => {
     e.preventDefault()
     if (this.state.listName) {
-      addTaskList()
+      addTaskList(
+        addTaskListOptions({
+          _id: this.props.boardId,
+          name: this.state.listName
+        })
+      )
       closeModal()
     }
   }

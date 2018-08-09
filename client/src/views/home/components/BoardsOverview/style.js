@@ -4,7 +4,7 @@ export const Container = styled.div`
   margin: 0 auto;
   margin-top: 5%;
   text-align: center;
-  width: 720px;
+  width: 740px;
   display: flex;
   flex-direction: column;
   height: 400px;
@@ -15,6 +15,7 @@ export const Container = styled.div`
 export const FlexGrid = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `
 
 export const BoardCard = styled.div`

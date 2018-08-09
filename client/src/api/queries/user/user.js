@@ -10,11 +10,6 @@ export default gql`
         _id
         createdAt
         name
-        members {
-          _id
-          name
-          avatar
-        }
       }
     }
   }

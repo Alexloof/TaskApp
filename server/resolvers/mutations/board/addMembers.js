@@ -38,8 +38,6 @@ export default async (parent, { boardId, membersEmail }, ctx) => {
       { new: true }
     )
 
-    console.log(newBoard)
-
     return newBoard
   } catch (error) {
     throw new Error(error)

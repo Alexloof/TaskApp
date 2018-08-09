@@ -33,7 +33,6 @@ class Home extends Component {
       <Query query={GET_USER}>
         {({ loading, error, data }) => {
           console.log(data)
-
           return (
             <Fragment>
               <Navbar user={data.user || {}} />

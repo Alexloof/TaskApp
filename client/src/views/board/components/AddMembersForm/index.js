@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_MEMBERS from 'api/mutations/board/addMembers'
+import ADD_MEMBERS, { addMembersOptions } from 'api/mutations/board/addMembers'
 
 import { StyledForm, Title, SubTitle, MembersEmail, Email } from './style'
 
@@ -33,7 +33,7 @@ class AddMembersForm extends Component {
 
   onAddMembers = addMembers => {
     if (!!this.state.emails.length) {
-      addMembers()
+      addMembers(addMembersOptions({ _id: this.props.boardId }))
       closeModal()
     }
   }

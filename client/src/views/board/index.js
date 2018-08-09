@@ -84,7 +84,7 @@ class Board extends Component {
                             native
                             from={{ opacity: 0 }}
                             to={{ opacity: 1.2 }}
-                            keys={data.board.taskLists.map(list => list._id)}
+                            keys={data.board.taskLists.map((list, i) => i)}
                           >
                             {data.board.taskLists.map(list => ({ opacity }) => (
                               <animated.div style={{ opacity }}>

@@ -34,7 +34,7 @@ class BoardsOverview extends Component {
             native
             from={{ y: 70, opacity: 0 }}
             to={{ y: 0, opacity: 1 }}
-            keys={this.props.boards.map(board => board._id)}
+            keys={this.props.boards.map((board, i) => i)}
           >
             {this.props.boards.map(board => ({ y, opacity }) => (
               <animated.div
@@ -48,7 +48,7 @@ class BoardsOverview extends Component {
                   onClick={() =>
                     this.props.history.push(`/app/boards/${board._id}`)
                   }
-                  color={COLORS[Math.floor(Math.random() * COLORS.length)]}
+                  color={COLORS[0]}
                 >
                   {board.name}
                 </BoardCard>
@@ -64,7 +64,7 @@ class BoardsOverview extends Component {
 export default withRouter(BoardsOverview)
 
 const COLORS = [
-  '#FDEB71',
+  '#ff6a2e',
   '#ABDCFF',
   'FEB692',
   '#CE9FFC',

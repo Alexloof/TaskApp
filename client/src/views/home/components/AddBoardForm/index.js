@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_BOARD from 'api/mutations/board/addBoard'
+import ADD_BOARD, { addBoardOptions } from 'api/mutations/board/addBoard'
 
 import { Container } from './style'
 
@@ -14,7 +14,7 @@ class AddBoardForm extends Component {
   onAddBoard = async addBoard => {
     if (this.state.name) {
       try {
-        await addBoard()
+        addBoard(addBoardOptions({ name: this.state.name }))
         this.props.closeModal()
       } catch (error) {}
     }
