@@ -16,7 +16,7 @@ import {
 
 class CardList extends Component {
   render() {
-    const { _id, index, cards, name, boardMembers } = this.props
+    const { _id, index, cards, name, boardMembers, boardId } = this.props
 
     return (
       <Draggable draggableId={_id} index={index}>
@@ -41,6 +41,8 @@ class CardList extends Component {
                         {...card}
                         index={card.order}
                         boardMembers={boardMembers}
+                        taskListId={_id}
+                        boardId={boardId}
                       />
                     ))}
                     {provided.placeholder}

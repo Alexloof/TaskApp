@@ -40,6 +40,9 @@ export const addTaskOptions = ({ boardId, taskListId, title }) => {
         list => list._id === taskListId
       )
 
+      // checkes if the newly created task already exist .
+      // (dublication can appear when using optimistic res
+      // together with subscriotions)
       const taskExist = updatedTaskList.tasks.filter(
         task => task._id === addTask._id
       )

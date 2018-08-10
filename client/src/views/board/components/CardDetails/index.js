@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_DESC_TO_TASK from 'api/mutations/task/addDescToTask'
+import ADD_DESC_TO_TASK, {
+  addDescToTaskOptions
+} from 'api/mutations/task/addDescToTask'
 
 import CardMembers from '../CardMembers'
 import CardComments from '../CardComments'
@@ -21,8 +23,10 @@ class CardDetails extends Component {
   }
 
   onAddDesc = addDescToTask => {
+    const { boardId, taskListId, _id } = this.props
+
     if (this.state.taskDesc) {
-      addDescToTask()
+      addDescToTask(addDescToTaskOptions({ boardId, taskListId, taskId: _id }))
       this.setState({ showEditTextarea: false })
     }
   }
@@ -56,8 +60,8 @@ class CardDetails extends Component {
               </span>
             </SubTitle>
 
-            {!showEditTextarea && description ? (
-              <p>{description}</p>
+            {!showEditTextarea ? (
+              <p>{taskDesc || description}</p>
             ) : (
               <React.Fragment>
                 <Textarea
