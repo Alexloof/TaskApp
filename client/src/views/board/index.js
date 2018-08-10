@@ -118,6 +118,7 @@ class Board extends Component {
                                     _id={list._id}
                                     cards={list.tasks}
                                     boardMembers={data.board.members}
+                                    boardId={this.props.match.params.id}
                                     name={list.name}
                                   />
                                 </animated.div>

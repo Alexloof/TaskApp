@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
-import ADD_TASK from 'api/mutations/task/addTask'
+import ADD_TASK, { addTaskOptions } from 'api/mutations/task/addTask'
 
 import { Button, Input } from 'components'
 import { closeModal } from 'components/Modal'
@@ -17,7 +17,13 @@ class AddCardForm extends Component {
     e.preventDefault()
 
     if (this.state.cardTitle) {
-      addTask()
+      addTask(
+        addTaskOptions({
+          taskListId: this.props._id,
+          title: this.state.cardTitle,
+          boardId: this.props.boardId
+        })
+      )
       closeModal()
     }
   }
@@ -27,7 +33,10 @@ class AddCardForm extends Component {
     return (
       <Mutation
         mutation={ADD_TASK}
-        variables={{ taskListId: this.props._id, title: cardTitle }}
+        variables={{
+          taskListId: this.props._id,
+          title: cardTitle
+        }}
       >
         {addTask => (
           <StyledForm onSubmit={e => this.addCard(e, addTask)}>
