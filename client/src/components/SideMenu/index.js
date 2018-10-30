@@ -16,9 +16,10 @@ export default ({ active, toggleSideMenu, boards }) => {
         native
         from={{ x: active ? -100 : 0 }}
         to={{ x: active ? 0 : -100 }}
-        keys={boards.map(board => board._id)}
+        items={boards}
+        keys={board => board._id}
       >
-        {boards.map(board => ({ x }) => (
+        {board => ({ x }) => (
           <animated.div
             style={{
               transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
@@ -29,7 +30,7 @@ export default ({ active, toggleSideMenu, boards }) => {
               {board.name}
             </NavLink>
           </animated.div>
-        ))}
+        )}
       </Trail>
 
       <ShowButton onClick={toggleSideMenu}>

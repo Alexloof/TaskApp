@@ -50,13 +50,16 @@ class Modal extends Component {
         ariaHideApp={false}
       >
         <Transition
+          items={this.state.content}
           from={{ opacity: 0 }}
           enter={{ opacity: 1 }}
           leave={{ opacity: 0 }}
         >
-          {this.state.content
-            ? styles => <div style={styles}>{this.state.content} </div>
-            : styles => <div style={styles}>{this.state.content} </div>}
+          {content =>
+            content
+              ? props => <div style={props}>{this.state.content} </div>
+              : props => <div style={props}>{this.state.content} </div>
+          }
         </Transition>
       </ReactModal>
     )
