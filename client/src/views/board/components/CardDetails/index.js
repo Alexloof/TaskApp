@@ -42,7 +42,8 @@ class CardDetails extends Component {
       >
         {addDescToTask => (
           <Container>
-            <Title>{title}</Title>
+            <Title>Title</Title>
+            <p>{title}</p>
             <SubTitle>Members</SubTitle>
             <CardMembers
               taskMembers={members}

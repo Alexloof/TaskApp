@@ -25,21 +25,20 @@ export const BoardCard = styled.div`
   justify-content: center;
   margin: 10px;
   width: 150px;
-
   box-shadow: 0px 8px 20px 0px #00000032;
   cursor: pointer;
-  background-image: linear-gradient(164deg, #81fbb8 10%, #20a39e33 100%);
   border-radius: 50%;
-  background-image: ${props =>
-    `linear-gradient(164deg, ${props.color} 20%, ${props.color}33 100%)`};
+  background-image: linear-gradient(164deg, #ff6a2e 20%, #ff47a1 100%);
+  color: #f1f1f1;
+  font-weight: bold;
 `
 
 export const Title = styled.h1`
   text-align: center;
-  font-size: 35px;
+  font-size: 50px;
   color: #353535;
   word-spacing: 4px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `
 
 export const SubTitle = styled.h2`
@@ -52,6 +51,6 @@ export const SubTitle = styled.h2`
 
 export const CreateBoardLink = styled.a`
   text-decoration: underline;
-  margin-bottom: 10px;
+  margin-bottom: 60px;
   cursor: pointer;
 `

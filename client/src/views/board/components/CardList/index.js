@@ -50,7 +50,7 @@ class CardList extends Component {
                   <AddCardLink
                     onClick={() => openModal(<AddCardForm {...this.props} />)}
                   >
-                    Add a task...
+                    Add a task
                   </AddCardLink>
                 </ListContainer>
               )}

@@ -49,7 +49,6 @@ class BoardsOverview extends Component {
                   onClick={() =>
                     this.props.history.push(`/app/boards/${board._id}`)
                   }
-                  color={COLORS[0]}
                 >
                   {board.name}
                 </BoardCard>
@@ -63,25 +62,3 @@ class BoardsOverview extends Component {
 }
 
 export default withRouter(BoardsOverview)
-
-const COLORS = [
-  '#ff6a2e',
-  '#ABDCFF',
-  'FEB692',
-  '#CE9FFC',
-  '#90F7EC',
-  '#FFF6B7',
-  '#81FBB8',
-  '#E2B0FF',
-  '#F97794',
-  '#FCCF31',
-  '#F761A1',
-  '#43CBFF',
-  '#5EFCE8',
-  '#FAD7A1',
-  '#FFD26F',
-  '#A0FE65',
-  '#FFDB01',
-  '#FEC163',
-  '#92FFC0'
-]

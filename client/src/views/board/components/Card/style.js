@@ -25,7 +25,7 @@ export const CardContainer = styled.div`
 export const LowerSection = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 5px;
+  margin-top: 10px;
   align-items: center;
 `
 

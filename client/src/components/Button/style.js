@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const StyledButton = styled.button`
   font-weight: bold;
   padding: 10px 30px;
-  background-image: linear-gradient(166deg, #ffae35 10%, #ff6a2e 100%);
-  min-height: 40px;
+  background-image: linear-gradient(164deg, #ff6a2e 20%, #ff47a1 100%);
+  min-height: 50px;
   height: fit-content;
   color: white;
   border: 0;

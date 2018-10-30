@@ -50,10 +50,7 @@ class AddListForm extends Component {
               value={this.state.listName}
               autoFocus
             />
-            <Button
-              type="submit"
-              style={{ marginTop: '10px', marginRight: '10px' }}
-            >
+            <Button type="submit" style={{ marginTop: '20px' }}>
               Save
             </Button>
           </StyledForm>

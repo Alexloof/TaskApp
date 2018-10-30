@@ -8,7 +8,7 @@ export const StyledForm = styled.form`
 
 export const Title = styled.h3`
   font-weight: bold;
-  font-size: 20px;
+  font-size: 27px;
   margin-bottom: 10px;
 `
 

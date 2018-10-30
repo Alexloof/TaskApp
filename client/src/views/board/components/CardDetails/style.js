@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const Title = styled.h3`
   font-weight: bold;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 `
 
 export const SubTitle = styled.h4`

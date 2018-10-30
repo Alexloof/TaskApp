@@ -19,6 +19,7 @@ export const Title = styled.h2`
   font-weight: bold;
   font-size: 18px;
   padding: 0px 15px;
+  margin-bottom: 5px;
 `
 
 export const MetaInfo = styled.p`
@@ -30,6 +31,8 @@ export const MetaInfo = styled.p`
 export const AddCardLink = styled.p`
   color: #484848;
   padding: 0px 15px;
+  font-weight: bold;
+  font-size: 15px;
   &:hover,
   &:active {
     text-decoration: underline;

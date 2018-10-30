@@ -49,7 +49,7 @@ class AddCardForm extends Component {
               placeholder="Describe the card..."
               autoFocus
             />
-            <Button type="submit" style={{ marginTop: '10px' }}>
+            <Button type="submit" style={{ marginTop: '20px' }}>
               Add Card
             </Button>
           </StyledForm>
