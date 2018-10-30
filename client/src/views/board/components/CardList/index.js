@@ -29,7 +29,7 @@ class CardList extends Component {
             <Droppable droppableId={_id} type="LIST">
               {(provided, snapshot) => (
                 <ListContainer
-                  innerRef={provided.innerRef}
+                  ref={provided.innerRef}
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   <Title>{name}</Title>

@@ -15,7 +15,7 @@ class Card extends Component {
       <Draggable draggableId={_id} index={index}>
         {(provided, snapshot) => (
           <CardContainer
-            innerRef={provided.innerRef}
+            ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             isDragging={snapshot.isDragging}

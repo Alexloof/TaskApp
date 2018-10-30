@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { Query } from 'react-apollo'
 import { withApollo } from 'react-apollo'
-import { Trail, Transition, Spring, animated, config } from 'react-spring'
+import { Spring, animated, config } from 'react-spring'
 
 import GET_BOARD from 'api/queries/board/board'
 import REORDER_TASKLIST from 'api/mutations/taskList/reorderTaskList'
@@ -68,7 +68,7 @@ class Board extends Component {
                       type="BOARD"
                     >
                       {(provided, snapshot) => (
-                        <ListsWrapper innerRef={provided.innerRef}>
+                        <ListsWrapper ref={provided.innerRef}>
                           {!data.board.taskLists.length && (
                             <Button
                               onClick={() =>
@@ -80,28 +80,6 @@ class Board extends Component {
                               Add you first list for tasks
                             </Button>
                           )}
-                          {/* <Trail
-                            native
-                            from={{ opacity: 0 }}
-                            to={{ opacity: 1.2 }}
-                            keys={data.board.taskLists.map((list, i) => i)}
-                          >
-                            {data.board.taskLists.map(
-                              (list, i) => ({ opacity }) => (
-                                // react spring bug? solved with a cond. in style tag
-                                <animated.div style={{ opacity }}>
-                                  <CardList
-                                    key={list._id}
-                                    index={list.order}
-                                    _id={list._id}
-                                    cards={list.tasks}
-                                    boardMembers={data.board.members}
-                                    name={list.name}
-                                  />
-                                </animated.div>
-                              )
-                            )}
-                          </Trail> */}
                           {data.board.taskLists.map((list, i) => (
                             <Spring
                               key={i}
