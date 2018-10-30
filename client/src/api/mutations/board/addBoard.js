@@ -12,15 +12,13 @@ export default gql`
   }
 `
 
-const fakeId = Math.round(Math.random() * -1000000)
-
 export const addBoardOptions = ({ name }) => {
   return {
     optimisticResponse: {
       __typename: 'Mutation',
       addBoard: {
         __typename: 'Board',
-        _id: fakeId,
+        _id: -1,
         createdAt: new Date(),
         name: name
       }
