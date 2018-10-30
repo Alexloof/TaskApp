@@ -1,5 +1,5 @@
 {
-  "name": "TaskApp",
+  "name": "taskapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -21,7 +21,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-spring": "^6.1.4",
-    "styled-components": "^3.3.2",
+    "styled-components": "^4.0.3",
     "subscriptions-transport-ws": "^0.9.12"
   },
   "scripts": {
